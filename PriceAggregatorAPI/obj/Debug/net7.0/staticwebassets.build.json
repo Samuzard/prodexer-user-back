@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "9wihKNz8SvsWzsSktyJ0BgKn9V3H68P8FUki2kuycko=",
+  "Source": "PriceAggregatorAPI",
+  "BasePath": "_content/PriceAggregatorAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
