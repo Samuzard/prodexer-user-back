@@ -1,21 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PriceAggregatorAPI.Models;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PricAggregatorAPI.Models.DTOs
 {
     public class ProductDTO
     {
-        [Required]
-        [MaxLength(50)]
-        public string Name { get; set; }
         public string Url { get; set; }
-        [Required]
-        [MaxLength(50)]
-        public string StoreId { get; set; }
-        [Required]
-        [MaxLength(50)]
-        public string OriginUrl { get; set; }
-        public string Description { get; set; }
-        [Required]
         public decimal Price { get; set; }
+        public string PriceUnit { get; set; }
+        public string StoreName { get; set; }
     }
 }
