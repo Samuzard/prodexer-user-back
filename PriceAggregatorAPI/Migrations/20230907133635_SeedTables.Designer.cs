@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PricAggregatorAPI.Data;
 
@@ -10,9 +11,11 @@ using PricAggregatorAPI.Data;
 namespace PricAggregatorAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230907133635_SeedTables")]
+    partial class SeedTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,7 +71,7 @@ namespace PricAggregatorAPI.Migrations
                         {
                             Id = 1,
                             CreatedBy = "admin",
-                            CreationDate = new DateTime(2023, 9, 7, 14, 40, 56, 914, DateTimeKind.Local).AddTicks(2177),
+                            CreationDate = new DateTime(2023, 9, 7, 14, 36, 35, 531, DateTimeKind.Local).AddTicks(3422),
                             MainProductId = 1,
                             Price = 79.98m,
                             PriceUnit = "$",
@@ -79,7 +82,7 @@ namespace PricAggregatorAPI.Migrations
                         {
                             Id = 2,
                             CreatedBy = "admin",
-                            CreationDate = new DateTime(2023, 9, 7, 14, 40, 56, 914, DateTimeKind.Local).AddTicks(2180),
+                            CreationDate = new DateTime(2023, 9, 7, 14, 36, 35, 531, DateTimeKind.Local).AddTicks(3427),
                             MainProductId = 1,
                             Price = 180.00m,
                             PriceUnit = "$",
@@ -90,7 +93,7 @@ namespace PricAggregatorAPI.Migrations
                         {
                             Id = 3,
                             CreatedBy = "admin",
-                            CreationDate = new DateTime(2023, 9, 7, 14, 40, 56, 914, DateTimeKind.Local).AddTicks(2183),
+                            CreationDate = new DateTime(2023, 9, 7, 14, 36, 35, 531, DateTimeKind.Local).AddTicks(3429),
                             MainProductId = 2,
                             Price = 100.00m,
                             PriceUnit = "$",
@@ -101,7 +104,7 @@ namespace PricAggregatorAPI.Migrations
                         {
                             Id = 4,
                             CreatedBy = "admin",
-                            CreationDate = new DateTime(2023, 9, 7, 14, 40, 56, 914, DateTimeKind.Local).AddTicks(2184),
+                            CreationDate = new DateTime(2023, 9, 7, 14, 36, 35, 531, DateTimeKind.Local).AddTicks(3431),
                             MainProductId = 2,
                             Price = 70.00m,
                             PriceUnit = "$",
@@ -112,7 +115,7 @@ namespace PricAggregatorAPI.Migrations
                         {
                             Id = 5,
                             CreatedBy = "admin",
-                            CreationDate = new DateTime(2023, 9, 7, 14, 40, 56, 914, DateTimeKind.Local).AddTicks(2186),
+                            CreationDate = new DateTime(2023, 9, 7, 14, 36, 35, 531, DateTimeKind.Local).AddTicks(3433),
                             MainProductId = 3,
                             Price = 879.00m,
                             PriceUnit = "$",
@@ -123,7 +126,7 @@ namespace PricAggregatorAPI.Migrations
                         {
                             Id = 6,
                             CreatedBy = "admin",
-                            CreationDate = new DateTime(2023, 9, 7, 14, 40, 56, 914, DateTimeKind.Local).AddTicks(2188),
+                            CreationDate = new DateTime(2023, 9, 7, 14, 36, 35, 531, DateTimeKind.Local).AddTicks(3435),
                             MainProductId = 3,
                             Price = 7287.15m,
                             PriceUnit = "$",
@@ -175,7 +178,7 @@ namespace PricAggregatorAPI.Migrations
                         {
                             Id = 1,
                             CreatedBy = "admin",
-                            CreationDate = new DateTime(2023, 9, 7, 14, 40, 56, 914, DateTimeKind.Local).AddTicks(2107),
+                            CreationDate = new DateTime(2023, 9, 7, 14, 36, 35, 531, DateTimeKind.Local).AddTicks(3388),
                             IsActive = true,
                             MainCatrgoryId = 1,
                             Name = "Shoes",
@@ -185,7 +188,7 @@ namespace PricAggregatorAPI.Migrations
                         {
                             Id = 2,
                             CreatedBy = "admin",
-                            CreationDate = new DateTime(2023, 9, 7, 14, 40, 56, 914, DateTimeKind.Local).AddTicks(2109),
+                            CreationDate = new DateTime(2023, 9, 7, 14, 36, 35, 531, DateTimeKind.Local).AddTicks(3391),
                             IsActive = true,
                             MainCatrgoryId = 1,
                             Name = "Shirts",
@@ -195,17 +198,17 @@ namespace PricAggregatorAPI.Migrations
                         {
                             Id = 3,
                             CreatedBy = "admin",
-                            CreationDate = new DateTime(2023, 9, 7, 14, 40, 56, 914, DateTimeKind.Local).AddTicks(2111),
+                            CreationDate = new DateTime(2023, 9, 7, 14, 36, 35, 531, DateTimeKind.Local).AddTicks(3393),
                             IsActive = true,
                             MainCatrgoryId = 1,
-                            Name = "Jackets",
+                            Name = "Shirts",
                             Sort = 1
                         },
                         new
                         {
                             Id = 4,
                             CreatedBy = "admin",
-                            CreationDate = new DateTime(2023, 9, 7, 14, 40, 56, 914, DateTimeKind.Local).AddTicks(2113),
+                            CreationDate = new DateTime(2023, 9, 7, 14, 36, 35, 531, DateTimeKind.Local).AddTicks(3394),
                             IsActive = true,
                             MainCatrgoryId = 2,
                             Name = "Gaming",
@@ -251,7 +254,7 @@ namespace PricAggregatorAPI.Migrations
                         {
                             Id = 1,
                             CreatedBy = "admin",
-                            CreationDate = new DateTime(2023, 9, 7, 14, 40, 56, 914, DateTimeKind.Local).AddTicks(2092),
+                            CreationDate = new DateTime(2023, 9, 7, 14, 36, 35, 531, DateTimeKind.Local).AddTicks(3366),
                             IsActive = true,
                             Name = "Clothes",
                             Sort = 1
@@ -260,7 +263,7 @@ namespace PricAggregatorAPI.Migrations
                         {
                             Id = 2,
                             CreatedBy = "admin",
-                            CreationDate = new DateTime(2023, 9, 7, 14, 40, 56, 914, DateTimeKind.Local).AddTicks(2095),
+                            CreationDate = new DateTime(2023, 9, 7, 14, 36, 35, 531, DateTimeKind.Local).AddTicks(3370),
                             IsActive = true,
                             Name = "Laptops",
                             Sort = 1
@@ -311,7 +314,7 @@ namespace PricAggregatorAPI.Migrations
                             Id = 1,
                             CatrgoryID = 1,
                             CreatedBy = "admin",
-                            CreationDate = new DateTime(2023, 9, 7, 14, 40, 56, 914, DateTimeKind.Local).AddTicks(2163),
+                            CreationDate = new DateTime(2023, 9, 7, 14, 36, 35, 531, DateTimeKind.Local).AddTicks(3408),
                             Description = "They say, \"Don't fix what works.\" We say, \"Perfect it.\" The classic, streetwear superstar gets rethought with the Nike Blazer Low '77 Jumbo. Harnessing the old-school look you love, it now features an oversized Swoosh design and jumbo laces. Its plush foam tongue and thicker stitching embolden the iconic look that's been praised by the streets since '77.",
                             ImagePath = "https://m.media-amazon.com/images/I/71SncdCQuhL._AC_UX679_.jpg",
                             Name = "Nike Blazer Low '77 Jumbo"
@@ -321,7 +324,7 @@ namespace PricAggregatorAPI.Migrations
                             Id = 2,
                             CatrgoryID = 2,
                             CreatedBy = "admin",
-                            CreationDate = new DateTime(2023, 9, 7, 14, 40, 56, 914, DateTimeKind.Local).AddTicks(2165),
+                            CreationDate = new DateTime(2023, 9, 7, 14, 36, 35, 531, DateTimeKind.Local).AddTicks(3410),
                             Description = "Layer this adidas originals Adventure Volcano Long Sleeve under a lightweight jacket, then head outside and let the cool air energise your day. Made from 100% cotton, this soft and comfortable tee is perfect for wandering. Whether you want to hit the trails up in the mountains, go fishing by the lake, or simply head to the market.",
                             ImagePath = "https://www.stirlingsports.co.nz/productimages/medium/1/104252_621324_95281.jpg",
                             Name = "Adventure Volcano Long Sleeve Tee"
@@ -331,7 +334,7 @@ namespace PricAggregatorAPI.Migrations
                             Id = 3,
                             CatrgoryID = 4,
                             CreatedBy = "admin",
-                            CreationDate = new DateTime(2023, 9, 7, 14, 40, 56, 914, DateTimeKind.Local).AddTicks(2167),
+                            CreationDate = new DateTime(2023, 9, 7, 14, 36, 35, 531, DateTimeKind.Local).AddTicks(3412),
                             Description = "World's leading brand of the best gaming laptops and creator laptops. Produce the thinnest, lightest, and high-performance laptops for gamers and creators.",
                             ImagePath = "https://static.gigabyte.com/StaticFile/Image/Global/22b8f47f1c21f48fa1a296eaa3565fed/Product/36557/webp/300",
                             Name = "GIGABYTE"
@@ -373,7 +376,7 @@ namespace PricAggregatorAPI.Migrations
                         {
                             Id = 1,
                             CreatedBy = "admin",
-                            CreationDate = new DateTime(2023, 9, 7, 14, 40, 56, 914, DateTimeKind.Local).AddTicks(1972),
+                            CreationDate = new DateTime(2023, 9, 7, 14, 36, 35, 531, DateTimeKind.Local).AddTicks(3212),
                             IconPath = "PlaceholderPath",
                             Name = "Amazon"
                         },
@@ -381,7 +384,7 @@ namespace PricAggregatorAPI.Migrations
                         {
                             Id = 2,
                             CreatedBy = "admin",
-                            CreationDate = new DateTime(2023, 9, 7, 14, 40, 56, 914, DateTimeKind.Local).AddTicks(1984),
+                            CreationDate = new DateTime(2023, 9, 7, 14, 36, 35, 531, DateTimeKind.Local).AddTicks(3226),
                             IconPath = "PlaceholderPath",
                             Name = "Stirling Sports"
                         },
@@ -389,9 +392,9 @@ namespace PricAggregatorAPI.Migrations
                         {
                             Id = 3,
                             CreatedBy = "admin",
-                            CreationDate = new DateTime(2023, 9, 7, 14, 40, 56, 914, DateTimeKind.Local).AddTicks(1986),
+                            CreationDate = new DateTime(2023, 9, 7, 14, 36, 35, 531, DateTimeKind.Local).AddTicks(3228),
                             IconPath = "PlaceholderPath",
-                            Name = "BestBuy"
+                            Name = "BestBuyu"
                         });
                 });
 

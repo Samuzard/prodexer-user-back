@@ -99,3 +99,11 @@ C:\Dev\PriceAggregator\PriceAggregatorWeb\obj\Debug\net7.0\scopedcss\projectbund
 C:\Dev\PriceAggregator\PriceAggregatorWeb\obj\Debug\net7.0\PriceAggregatorWeb.csproj.CopyComplete
 C:\Dev\PriceAggregator\PriceAggregatorWeb\obj\Debug\net7.0\PriceAggregatorWeb.genruntimeconfig.cache
 C:\Dev\PriceAggregator\PriceAggregatorWeb\obj\Debug\net7.0\ref\PriceAggregatorWeb.dll
+C:\Dev\PriceAggregator\PriceAggregatorWeb\bin\Debug\net7.0\Humanizer.dll
+C:\Dev\PriceAggregator\PriceAggregatorWeb\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll
+C:\Dev\PriceAggregator\PriceAggregatorWeb\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Dev\PriceAggregator\PriceAggregatorWeb\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Dev\PriceAggregator\PriceAggregatorWeb\bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Dev\PriceAggregator\PriceAggregatorWeb\bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll
+C:\Dev\PriceAggregator\PriceAggregatorWeb\bin\Debug\net7.0\Mono.TextTemplating.dll
+C:\Dev\PriceAggregator\PriceAggregatorWeb\bin\Debug\net7.0\System.CodeDom.dll

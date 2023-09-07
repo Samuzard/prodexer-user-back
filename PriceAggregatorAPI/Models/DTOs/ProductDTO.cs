@@ -7,10 +7,10 @@ namespace PricAggregatorAPI.Models.DTOs
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
-        public string ImageUrl { get; set; }
+        public string Url { get; set; }
         [Required]
         [MaxLength(50)]
-        public string Store { get; set; }
+        public string StoreId { get; set; }
         [Required]
         [MaxLength(50)]
         public string OriginUrl { get; set; }
