@@ -7,10 +7,10 @@ namespace PricAggregatorAPI.Data.Repository
     public class Repository<T> : IRepository<T> where T : class
     {
         private readonly DbSet<T> _dbSet;
-        private readonly ApplicationDbContext _dbContext;
+        internal readonly ApplicationDbContext DbContext;
         public Repository(ApplicationDbContext dbContext)
         {
-            _dbContext = dbContext;
+            DbContext = dbContext;
             _dbSet = dbContext.Set<T>();
         }
 
@@ -45,7 +45,7 @@ namespace PricAggregatorAPI.Data.Repository
 
         public async Task<int> SaveAsync()
         {
-            return await _dbContext.SaveChangesAsync();
+            return await DbContext.SaveChangesAsync();
         }
     }
 }

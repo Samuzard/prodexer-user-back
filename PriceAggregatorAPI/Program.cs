@@ -1,11 +1,9 @@
-using Google.Protobuf.WellKnownTypes;
 using Microsoft.EntityFrameworkCore;
-using PricAggregatorAPI.Data;
-using PricAggregatorAPI.Data.Repository;
-using PricAggregatorAPI.Data.Repository.IRepository;
 using PricAggregatorAPI.Middleware;
-using PricAggregatorAPI.Models;
 using PricAggregatorAPI.Utils;
+using PriceAggregator.Core.IRepository;
+using PriceAggregator.Infrastructure;
+using PriceAggregator.Infrastructure.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +21,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
     option.UseMySQL(builder.Configuration.GetConnectionString("DefaultSqlConnection"))
 );
 
-builder.Services.AddScoped<IRepository<Product>, Repository<Product>>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
 var app = builder.Build();
 

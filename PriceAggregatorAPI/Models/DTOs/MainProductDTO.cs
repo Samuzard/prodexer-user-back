@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace PriceAggregatorAPI.Models.DTOs
+﻿namespace PriceAggregatorAPI.Models.DTOs
 {
     public class MainProductDTO
     {

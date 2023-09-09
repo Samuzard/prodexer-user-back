@@ -28,16 +28,15 @@ namespace PriceAggregator.Controllers
 
             var response = await _productService.GetAllAsync();
 
-            if (response != null && response.IsSuccess)
+            if (response == null)
+            {
+                return Redirect("/Home/Error/{0}");
+            }
+            else
             {
                 products = JsonConvert.DeserializeObject<List<ProductDTO>>(Convert.ToString(response.Result));
             }
-
-            if (response == null)
-                return Redirect("/Home/Error/{0}");
-
-            //products = _mapper.Map<ProductDTO>(products);
-
+            
             return View(products);
         }
 

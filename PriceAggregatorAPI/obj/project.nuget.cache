@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "aYjpPMMBvq2L2auB2e78UuSjrfjLuCK9GD/sUyMIA7rlrT3UfOCwORBNWMHNtOr03BtW96UYV7/opOs7tBBbSQ==",
+  "dgSpecHash": "cojxFZ9oEX8S4njBVeMUhNCYLSlfoOkfuyXqfhsYYdL8SIm0i2v9r67Q0IKIHFnizMNjc1ViucVUOooOfyIfPA==",
   "success": true,
   "projectFilePath": "C:\\Dev\\PriceAggregator\\PriceAggregatorAPI\\PriceAggregatorAPI.csproj",
   "expectedPackageFiles": [

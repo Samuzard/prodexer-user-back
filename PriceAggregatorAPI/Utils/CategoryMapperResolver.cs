@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using PriceAggregatorAPI.Models;
+using PriceAggregator.Core.Entities;
 using PriceAggregatorAPI.Models.DTOs;
 
 namespace PriceAggregatorAPI.Utils

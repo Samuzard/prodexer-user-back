@@ -1019,6 +1019,31 @@
         "runtime": {
           "lib/net7.0/ZstdSharp.dll": {}
         }
+      },
+      "PriceAggregator.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/PriceAggregator.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PriceAggregator.Core.dll": {}
+        }
+      },
+      "PriceAggregator.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "7.0.10",
+          "MySql.EntityFrameworkCore": "7.0.5",
+          "PriceAggregator.Core": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/PriceAggregator.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PriceAggregator.Infrastructure.dll": {}
+        }
       }
     }
   },
@@ -3179,6 +3204,16 @@
         "zstdsharp.port.0.7.1.nupkg.sha512",
         "zstdsharp.port.nuspec"
       ]
+    },
+    "PriceAggregator.Core/1.0.0": {
+      "type": "project",
+      "path": "../PriceAggregator.Core/PriceAggregator.Core.csproj",
+      "msbuildProject": "../PriceAggregator.Core/PriceAggregator.Core.csproj"
+    },
+    "PriceAggregator.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../PriceAggregator.Infrastructure/PriceAggregator.Infrastructure.csproj",
+      "msbuildProject": "../PriceAggregator.Infrastructure/PriceAggregator.Infrastructure.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3189,6 +3224,8 @@
       "Microsoft.EntityFrameworkCore >= 7.0.10",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.10",
       "MySql.EntityFrameworkCore >= 7.0.5",
+      "PriceAggregator.Core >= 1.0.0",
+      "PriceAggregator.Infrastructure >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -3219,7 +3256,14 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Dev\\PriceAggregator\\PriceAggregator.Core\\PriceAggregator.Core.csproj": {
+              "projectPath": "C:\\Dev\\PriceAggregator\\PriceAggregator.Core\\PriceAggregator.Core.csproj"
+            },
+            "C:\\Dev\\PriceAggregator\\PriceAggregator.Infrastructure\\PriceAggregator.Infrastructure.csproj": {
+              "projectPath": "C:\\Dev\\PriceAggregator\\PriceAggregator.Infrastructure\\PriceAggregator.Infrastructure.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using PricAggregatorAPI.Models;
 using PricAggregatorAPI.Models.DTOs;
+using PriceAggregator.Core.Entities;
 
 namespace PriceAggregatorAPI.Utils
 {

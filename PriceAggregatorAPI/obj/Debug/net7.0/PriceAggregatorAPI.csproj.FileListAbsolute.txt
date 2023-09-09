@@ -199,3 +199,7 @@ C:\Dev\PriceAggregator\PriceAggregatorAPI\obj\Debug\net7.0\refint\PriceAggregato
 C:\Dev\PriceAggregator\PriceAggregatorAPI\obj\Debug\net7.0\PriceAggregatorAPI.pdb
 C:\Dev\PriceAggregator\PriceAggregatorAPI\obj\Debug\net7.0\PriceAggregatorAPI.genruntimeconfig.cache
 C:\Dev\PriceAggregator\PriceAggregatorAPI\obj\Debug\net7.0\ref\PriceAggregatorAPI.dll
+C:\Dev\PriceAggregator\PriceAggregatorAPI\bin\Debug\net7.0\PriceAggregator.Core.dll
+C:\Dev\PriceAggregator\PriceAggregatorAPI\bin\Debug\net7.0\PriceAggregator.Infrastructure.dll
+C:\Dev\PriceAggregator\PriceAggregatorAPI\bin\Debug\net7.0\PriceAggregator.Core.pdb
+C:\Dev\PriceAggregator\PriceAggregatorAPI\bin\Debug\net7.0\PriceAggregator.Infrastructure.pdb

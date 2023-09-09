@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using PricAggregatorAPI.Data.Repository.IRepository;
-using PricAggregatorAPI.Models;
 using PricAggregatorAPI.Models.DTOs;
+using PriceAggregator.Core.Entities;
+using PriceAggregator.Core.IRepository;
 using PriceAggregatorAPI;
 using System.Net;
 
@@ -13,11 +13,11 @@ namespace PricAggregatorAPI.Controllers
     public class PriceAggregatorController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly IRepository<Product> _repository;
+        private readonly IProductRepository _repository;
         private APIResponse _response;
         private readonly ILogger<PriceAggregatorController> _logger;
 
-        public PriceAggregatorController(IMapper mapper, IRepository<Product> repository, ILogger<PriceAggregatorController> logger)
+        public PriceAggregatorController(IMapper mapper, IProductRepository repository, ILogger<PriceAggregatorController> logger)
         {
             _repository = repository;
             _mapper = mapper;
@@ -30,7 +30,7 @@ namespace PricAggregatorAPI.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<ActionResult<APIResponse>> GetAllProducts()
         {
-            IEnumerable<Product> products = await _repository.GetAllAsync();
+            IEnumerable<Product> products = await _repository.GetAllProducts();
 
             if (products == null || products.Count() == 0)
             {
