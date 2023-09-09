@@ -1,11 +1,8 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using PricAggregatorAPI.Utils;
 using PriceAggregator.Models;
 using PriceAggregator.Models.DTOs;
 using PriceAggregatorWeb.Services.IServices;
-using System.Diagnostics;
 
 namespace PriceAggregator.Controllers
 {
@@ -13,21 +10,19 @@ namespace PriceAggregator.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IProductService _productService;
-        private readonly IMapper _mapper;
 
-        public HomeController(ILogger<HomeController> logger, IProductService productService, IMapper mapper)
+        public HomeController(ILogger<HomeController> logger, IProductService productService)
         {
             _logger = logger;
             _productService = productService;
-            _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
         {
-            List<ProductDTO> products = new();
+            List<ProductDTO> products;
 
             var response = await _productService.GetAllAsync();
-
+            
             if (response == null)
             {
                 return Redirect("/Home/Error/{0}");
@@ -36,7 +31,7 @@ namespace PriceAggregator.Controllers
             {
                 products = JsonConvert.DeserializeObject<List<ProductDTO>>(Convert.ToString(response.Result));
             }
-            
+
             return View(products);
         }
 

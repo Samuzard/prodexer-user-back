@@ -1,5 +1,4 @@
 ﻿using PricAggregatorAPI.Utils;
-using PricAggregatorWeb.Models;
 using PriceAggregatorWeb.Services.IServices;
 using PriceAggregatorWeb.Utils;
 

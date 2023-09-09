@@ -1,17 +1,12 @@
-using PricAggregatorAPI.Utils;
-using PricAggregatorWeb.Utils;
 using PriceAggregatorWeb.Services;
 using PriceAggregatorWeb.Services.IServices;
-using static System.Net.Mime.MediaTypeNames;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddAutoMapper(typeof(MappingConfig));
 builder.Services.AddHttpClient<IProductService, ProductService>();
 builder.Services.AddScoped<IProductService, ProductService>();
-
 
 var app = builder.Build();
 
