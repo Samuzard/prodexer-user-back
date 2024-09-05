@@ -19,3 +19,8 @@ public class MyController : ControllerBase
 ...
 
 ## TODO
+- Add Dates and fix UTC problem
+- Remove/Exclude Asp Web app project
+- Remove excluded files?
+- Exclude MinProductDTO
+- Add missing properties to ProductDTO
