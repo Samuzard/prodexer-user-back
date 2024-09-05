@@ -20,7 +20,7 @@ namespace PriceAggregator.Infrastructure.Repository
                 query = query.Where(filter);
             }
 
-            var result = await query.Include(x=>x.MainProduct).ToListAsync();
+            var result = await query.ToListAsync();
 
             return result;
         }

@@ -13,12 +13,23 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
+builder.Services.AddCors(option =>
+{
+    option.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
+
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 
 builder.Services.AddDbContext<ApplicationDbContext>(option =>
-    option.UseMySQL(builder.Configuration.GetConnectionString("DefaultSqlConnection"))
+    option.UseNpgsql(builder.Configuration.GetConnectionString("DefaultSqlConnection"))
 );
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
@@ -35,6 +46,8 @@ if (app.Environment.IsDevelopment())
 app.UseMiddleware<ValidationExceptionMiddleware>();
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 

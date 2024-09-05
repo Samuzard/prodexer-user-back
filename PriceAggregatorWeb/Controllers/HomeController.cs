@@ -23,7 +23,7 @@ namespace PriceAggregator.Controllers
 
             var response = await _productService.GetAllAsync();
             
-            if (response == null)
+            if (response == null || !response.IsSuccess)
             {
                 return Redirect("/Home/Error/{0}");
             }

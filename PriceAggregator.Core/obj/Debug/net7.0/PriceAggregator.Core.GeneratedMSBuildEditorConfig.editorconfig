@@ -8,4 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PriceAggregator.Core
-build_property.ProjectDir = C:\Dev\PriceAggregator\PriceAggregator.Core\
+build_property.ProjectDir = C:\Build\Dev\PriceAggregator\PriceAggregator.Core\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 

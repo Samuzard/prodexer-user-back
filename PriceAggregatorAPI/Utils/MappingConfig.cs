@@ -13,10 +13,6 @@ namespace PricAggregatorAPI.Utils
             CreateMap<Product, ProductDTO>()
                 .ForMember(dest => dest.StoreName
                     , opt => opt.MapFrom<StoreMapperResolver>());
-
-            CreateMap<MainProduct, MainProductDTO>()
-                .ForMember(dest => dest.CatrgoryName
-                    , opt => opt.MapFrom<MainProductMapperResolver>());
         }
     }
 }

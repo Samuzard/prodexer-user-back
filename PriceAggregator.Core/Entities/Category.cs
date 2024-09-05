@@ -9,11 +9,10 @@ namespace PriceAggregator.Core.Entities
         [MaxLength(150)]
         public string Name { get; set; }
 
-        [ForeignKey(nameof(MainCategory))]
-        public int MainCatrgoryId { get; set; }
-        public MainCategory MainCategory { get; set; }
+        public int TreeLevel { get; set; }
+        public int ParentId { get; set; }
 
-        public bool IsActive { get; set; }
-        public int Sort { get; set; }
+        //public bool IsActive { get; set; }
+        //public int Sort { get; set; }
     }
 }

@@ -5,9 +5,10 @@ namespace PriceAggregator.Core.Entities
 {
     public class Product : AggregateObject
     {   
-        [ForeignKey(nameof(MainProduct))]
-        public int MainProductId { get; set; }
-        public MainProduct MainProduct { get; set; }
+        [Required]
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string ImagePath { get; set; }
 
         [ForeignKey(nameof(Store))]
         public int StoreId { get;set; }
@@ -21,5 +22,9 @@ namespace PriceAggregator.Core.Entities
         [Required]
         [MaxLength(10)]
         public string PriceUnit { get; set; }
+        
+        [ForeignKey(nameof(Category))]
+        public int CatrgoryID { get; set; }
+        public Category Category { get; set; }
     }
 }

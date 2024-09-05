@@ -1,0 +1,12 @@
+C:\Build\Dev\PriceAggregator\PriceAggregator.Core\bin\Debug\net8.0\PriceAggregator.Core.deps.json
+C:\Build\Dev\PriceAggregator\PriceAggregator.Core\bin\Debug\net8.0\PriceAggregator.Core.dll
+C:\Build\Dev\PriceAggregator\PriceAggregator.Core\bin\Debug\net8.0\PriceAggregator.Core.pdb
+C:\Build\Dev\PriceAggregator\PriceAggregator.Core\obj\Debug\net8.0\PriceAggregator.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Build\Dev\PriceAggregator\PriceAggregator.Core\obj\Debug\net8.0\PriceAggregator.Core.AssemblyInfoInputs.cache
+C:\Build\Dev\PriceAggregator\PriceAggregator.Core\obj\Debug\net8.0\PriceAggregator.Core.AssemblyInfo.cs
+C:\Build\Dev\PriceAggregator\PriceAggregator.Core\obj\Debug\net8.0\PriceAggregator.Core.csproj.CoreCompileInputs.cache
+C:\Build\Dev\PriceAggregator\PriceAggregator.Core\obj\Debug\net8.0\PriceAggregator.Core.sourcelink.json
+C:\Build\Dev\PriceAggregator\PriceAggregator.Core\obj\Debug\net8.0\PriceAggregator.Core.dll
+C:\Build\Dev\PriceAggregator\PriceAggregator.Core\obj\Debug\net8.0\refint\PriceAggregator.Core.dll
+C:\Build\Dev\PriceAggregator\PriceAggregator.Core\obj\Debug\net8.0\PriceAggregator.Core.pdb
+C:\Build\Dev\PriceAggregator\PriceAggregator.Core\obj\Debug\net8.0\ref\PriceAggregator.Core.dll
