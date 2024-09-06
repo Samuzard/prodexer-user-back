@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PriceAggregator.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a0062455802460581c6a8c4772f0445f440396be")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf9e9c1fedde2b2c3e10c91b078682c14bd91c5b")]
 [assembly: System.Reflection.AssemblyProductAttribute("PriceAggregator.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PriceAggregator.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
