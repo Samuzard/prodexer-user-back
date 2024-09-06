@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using PricAggregatorAPI.Models.DTOs;
 using PriceAggregator.Core.Entities;
-using PriceAggregatorAPI.Models.DTOs;
-using PriceAggregatorAPI.Utils;
 
 namespace PricAggregatorAPI.Utils
 {
@@ -10,9 +8,7 @@ namespace PricAggregatorAPI.Utils
     {
         public MappingConfig()
         {
-            CreateMap<Product, ProductDTO>()
-                .ForMember(dest => dest.StoreName
-                    , opt => opt.MapFrom<StoreMapperResolver>());
+            CreateMap<Product, ProductDTO>();
         }
     }
 }

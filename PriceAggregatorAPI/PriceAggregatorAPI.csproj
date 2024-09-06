@@ -16,6 +16,10 @@
     <None Remove="Data\**" />
     <None Remove="Migrations\**" />
     <Compile Remove="Utils\CategoryMapperResolver.cs" />
+    <Compile Remove="obj\**" />
+    <EmbeddedResource Remove="obj\**" />
+    <Content Remove="obj\**" />
+    <None Remove="obj\**" />
   </ItemGroup>
 
   <ItemGroup>
