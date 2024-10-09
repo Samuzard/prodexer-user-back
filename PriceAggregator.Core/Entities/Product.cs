@@ -24,7 +24,11 @@ namespace PriceAggregator.Core.Entities
         public string PriceUnit { get; set; }
         
         [ForeignKey(nameof(Category))]
-        public int CatrgoryID { get; set; }
+        public int CategoryId { get; set; }
         public Category Category { get; set; }
+        
+        public int? FeatureId { get; set; }
+        [ForeignKey("FeatureId")]
+        public Feature Feature { get; set; }
     }
 }

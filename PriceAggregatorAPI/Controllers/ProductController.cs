@@ -10,14 +10,14 @@ namespace PricAggregatorAPI.Controllers
 {
     [ApiController]
     [Route("api/ProductAPI")]
-    public class PriceAggregatorController : ControllerBase
+    public class ProductController : ControllerBase
     {
         private readonly IMapper _mapper;
         private readonly IProductRepository _repository;
         private APIResponse _response;
-        private readonly ILogger<PriceAggregatorController> _logger;
+        private readonly ILogger<ProductController> _logger;
 
-        public PriceAggregatorController(IMapper mapper, IProductRepository repository, ILogger<PriceAggregatorController> logger)
+        public ProductController(IMapper mapper, IProductRepository repository, ILogger<ProductController> logger)
         {
             _repository = repository;
             _mapper = mapper;
