@@ -14,7 +14,7 @@ namespace PriceAggregator.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.UpdateData(
-                table: "Product",
+                table: "Products",
                 keyColumn: "Id",
                 keyValue: 8,
                 column: "ImagePath",
@@ -22,7 +22,7 @@ namespace PriceAggregator.Infrastructure.Migrations
             );
 
             migrationBuilder.UpdateData(
-                table: "Product",
+                table: "Products",
                 keyColumn: "Id",
                 keyValue: 9,
                 column: "ImagePath",
@@ -30,7 +30,7 @@ namespace PriceAggregator.Infrastructure.Migrations
             );
 
             migrationBuilder.UpdateData(
-                table: "Product",
+                table: "Products",
                 keyColumn: "Id",
                 keyValue: 10,
                 column: "ImagePath",
@@ -38,7 +38,7 @@ namespace PriceAggregator.Infrastructure.Migrations
             );
 
             migrationBuilder.UpdateData(
-                table: "Product",
+                table: "Products",
                 keyColumn: "Id",
                 keyValue: 11,
                 column: "ImagePath",
@@ -46,7 +46,7 @@ namespace PriceAggregator.Infrastructure.Migrations
             );
 
             migrationBuilder.UpdateData(
-                table: "Product",
+                table: "Products",
                 keyColumn: "Id",
                 keyValue: 12,
                 column: "ImagePath",
@@ -54,7 +54,7 @@ namespace PriceAggregator.Infrastructure.Migrations
             );
 
             migrationBuilder.UpdateData(
-                table: "Product",
+                table: "Products",
                 keyColumn: "Id",
                 keyValue: 13,
                 column: "ImagePath",
@@ -66,16 +66,16 @@ namespace PriceAggregator.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Product");
+                name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Category");
+                name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "Store");
+                name: "Stores");
 
             migrationBuilder.DropTable(
-                name: "Feature");
+                name: "Features");
         }
     }
 }

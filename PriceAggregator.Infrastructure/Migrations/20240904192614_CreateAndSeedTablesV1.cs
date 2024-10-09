@@ -14,7 +14,7 @@ namespace PriceAggregator.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Category",
+                name: "Categories",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -31,7 +31,7 @@ namespace PriceAggregator.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Store",
+                name: "Stores",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -47,7 +47,7 @@ namespace PriceAggregator.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Product",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -69,19 +69,19 @@ namespace PriceAggregator.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "FK_Product_Category_CatrgoryID",
                         column: x => x.CatrgoryID,
-                        principalTable: "Category",
+                        principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Product_Store_StoreId",
                         column: x => x.StoreId,
-                        principalTable: "Store",
+                        principalTable: "Stores",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
-                table: "Category",
+                table: "Categories",
                 columns: new[] { "Id", "CreatedBy", "Name", "ParentId", "TreeLevel", "UpdatedBy" },
                 values: new object[,]
                 {
@@ -96,7 +96,7 @@ namespace PriceAggregator.Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Store",
+                table: "Stores",
                 columns: new[] { "Id", "CreatedBy", "IconPath", "Name", "UpdatedBy" },
                 values: new object[,]
                 {
@@ -106,7 +106,7 @@ namespace PriceAggregator.Infrastructure.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Product",
+                table: "Products",
                 columns: new[] { "Id", "CatrgoryID", "CreatedBy", "Description", "ImagePath", "Name", "Price", "PriceUnit", "StoreId", "UpdatedBy", "Url" },
                 values: new object[,]
                 {
@@ -121,12 +121,12 @@ namespace PriceAggregator.Infrastructure.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Product_CatrgoryID",
-                table: "Product",
+                table: "Products",
                 column: "CatrgoryID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Product_StoreId",
-                table: "Product",
+                table: "Products",
                 column: "StoreId");
         }
 
@@ -134,13 +134,13 @@ namespace PriceAggregator.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Product");
+                name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Category");
+                name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "Store");
+                name: "Stores");
         }
     }
 }

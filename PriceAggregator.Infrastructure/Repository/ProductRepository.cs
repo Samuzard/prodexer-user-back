@@ -13,7 +13,7 @@ namespace PriceAggregator.Infrastructure.Repository
 
         public async Task<IEnumerable<Product>> GetAllProducts(Expression<Func<Product, bool>> filter = null)
         {
-            IQueryable<Product> query = DbContext.Product;
+            IQueryable<Product> query = DbContext.Products;
 
             if (filter != null)
             {

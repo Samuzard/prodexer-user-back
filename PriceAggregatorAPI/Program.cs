@@ -33,6 +33,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
 );
 
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IFeatureRepository, FeatureRepository>();
 
 var app = builder.Build();
 

@@ -22,7 +22,7 @@ namespace PricAggregatorAPI.Middleware
             catch (ValidationException exception)
             {
                 context.Response.StatusCode = 400;
-                var validationFailureResponse = new APIResponse
+                var validationFailureResponse = new ApiResponse
                 {
                     IsSuccess = false,
                     ErrorMessages = new List<string> { exception.ToString() }

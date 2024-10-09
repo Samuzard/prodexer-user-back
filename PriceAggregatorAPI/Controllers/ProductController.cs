@@ -9,12 +9,12 @@ using System.Net;
 namespace PricAggregatorAPI.Controllers
 {
     [ApiController]
-    [Route("api/ProductAPI")]
+    [Route("api/ProductApi")]
     public class ProductController : ControllerBase
     {
         private readonly IMapper _mapper;
         private readonly IProductRepository _repository;
-        private APIResponse _response;
+        private ApiResponse _response;
         private readonly ILogger<ProductController> _logger;
 
         public ProductController(IMapper mapper, IProductRepository repository, ILogger<ProductController> logger)
@@ -28,7 +28,7 @@ namespace PricAggregatorAPI.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<APIResponse>> GetAllProducts()
+        public async Task<ActionResult<ApiResponse>> GetAllProducts()
         {
             IEnumerable<Product> products = await _repository.GetAllProducts();
 
@@ -48,7 +48,7 @@ namespace PricAggregatorAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<APIResponse>> GetProduct(int id)
+        public async Task<ActionResult<ApiResponse>> GetProduct(int id)
         {
             if (id == 0)
             {
