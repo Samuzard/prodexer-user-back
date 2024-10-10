@@ -48,7 +48,7 @@ public class FeatureController(
                 {
                     IsSuccess = false,
                     StatusCode = HttpStatusCode.NotFound,
-                    ErrorMessages = ["Unable to create feature. Products not found."]
+                    ErrorMessages = ["Unable to create feature. Product not found."]
                 };
 
                 return NotFound(apiResponse);

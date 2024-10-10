@@ -5,10 +5,10 @@ namespace PriceAggregator.Infrastructure
 {
     public class ApplicationDbContext : DbContext
     {
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Store> Stores { get; set; }
-        public DbSet<Feature> Features { get; set; }
+        public DbSet<Product> Product { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Store> Store { get; set; }
+        public DbSet<Feature> Feature { get; set; }
         
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

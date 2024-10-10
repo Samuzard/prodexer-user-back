@@ -12,8 +12,8 @@ using PriceAggregator.Infrastructure;
 namespace PriceAggregator.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241009212832_SeedTablesV2")]
-    partial class SeedTablesV2
+    [Migration("20241010002050_CreateTablesAndSeeds")]
+    partial class CreateTablesAndSeeds
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

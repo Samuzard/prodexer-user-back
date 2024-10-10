@@ -10,14 +10,14 @@ public class FeatureRepository(ApplicationDbContext dbContext) : Repository<Feat
     {
         var feature = new Feature();
 
-        var products = await DbContext.Products
+        var products = await DbContext.Product
             .Where(p => productIds.Contains(p.Id))
             .ToListAsync();
 
         feature.Name = name;
         feature.Products = products;
 
-        await DbContext.Features.AddAsync(feature);
+        await DbContext.Feature.AddAsync(feature);
 
         await DbContext.SaveChangesAsync();
 
