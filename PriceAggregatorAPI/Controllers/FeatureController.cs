@@ -20,12 +20,49 @@ public class FeatureController(
     private readonly ApiResponse _response = new();
     private readonly ILogger<FeatureController> _logger = logger;
 
+    [HttpGet]
+    public async Task<ActionResult<ApiResponse>> GetAllFeatures()
+    {
+        try
+        {
+            var results = await _repository.GetAllFeatures();
+        
+            if (results == null || !results.Any())
+            {
+                return NotFound(new ApiResponse
+                {
+                    IsSuccess = false,
+                    StatusCode = HttpStatusCode.NotFound,
+                    ErrorMessages = ["Unable to create feature. Product not found."]
+                });
+            }
+
+            return Ok(new ApiResponse
+            {
+                IsSuccess = true,
+                StatusCode = HttpStatusCode.OK,
+                Result = results
+            });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occurred while fetching features");
+
+            return StatusCode(StatusCodes.Status500InternalServerError, new ApiResponse()
+            {
+                IsSuccess = false,
+                StatusCode = HttpStatusCode.InternalServerError,
+                ErrorMessages = [ex.Message]
+            });
+        }
+    }
+    
     [HttpPost]
     public async Task<ActionResult<ApiResponse>> AddFeature([FromBody] AddFeatureRequest request)
     {
         if (!ModelState.IsValid)
         {
-            var apiResponse = new ApiResponse()
+            return BadRequest(new ApiResponse()
             {
                 IsSuccess = false,
                 StatusCode = HttpStatusCode.BadRequest,
@@ -33,9 +70,7 @@ public class FeatureController(
                     .SelectMany(v => v.Errors
                         .Select(e => e.ErrorMessage))
                     .ToList()
-            };
-
-            return BadRequest(apiResponse);
+            });
         }
 
         try
@@ -44,14 +79,12 @@ public class FeatureController(
             
             if (feature == null)
             {
-                var apiResponse = new ApiResponse()
+                return NotFound(new ApiResponse()
                 {
                     IsSuccess = false,
                     StatusCode = HttpStatusCode.NotFound,
                     ErrorMessages = ["Unable to create feature. Product not found."]
-                };
-
-                return NotFound(apiResponse);
+                });
             }
 
             return CreatedAtAction(nameof(GetFeature), new {id = feature.Id}, new ApiResponse
@@ -63,14 +96,14 @@ public class FeatureController(
         }
         catch (Exception ex)
         {
-             var apiResponse = new ApiResponse()
+            _logger.LogError(ex, "An error occurred while fetching features");
+
+            return StatusCode(StatusCodes.Status500InternalServerError, new ApiResponse()
             {
                 IsSuccess = false,
                 StatusCode = HttpStatusCode.InternalServerError,
-                ErrorMessages = ["An error occurred while processing your request."]
-            };
-
-            return StatusCode(StatusCodes.Status500InternalServerError, apiResponse);
+                ErrorMessages = [ex.Message]
+            });
         }
     }
 
