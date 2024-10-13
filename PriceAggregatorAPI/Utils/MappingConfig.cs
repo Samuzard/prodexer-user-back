@@ -1,14 +1,18 @@
 ﻿using AutoMapper;
-using PricAggregatorAPI.Models.DTOs;
 using PriceAggregator.Core.Entities;
+using PriceAggregatorAPI.Models.DTOs;
 
-namespace PricAggregatorAPI.Utils
+namespace PriceAggregatorAPI.Utils
 {
     public sealed class MappingConfig : Profile
     {
         public MappingConfig()
         {
-            CreateMap<Product, ProductDTO>();
+            CreateMap<Product, ProductDto>()
+                .ForMember(dest => dest.StoreName, opt => opt.MapFrom(src => src.Store.Name));
+
+            CreateMap<Feature, FeatureDto>()
+                .ForMember(dest => dest.Products, opt => opt.MapFrom(src => src.Products));
         }
     }
 }

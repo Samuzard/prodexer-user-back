@@ -1,6 +1,6 @@
-﻿namespace PricAggregatorAPI.Models.DTOs
+﻿namespace PriceAggregatorAPI.Models.DTOs
 {
-    public class ProductDTO
+    public class ProductDto
     {
         public string Name { get; set; }
         public string Url { get; set; }

@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using PricAggregatorAPI.Middleware;
-using PricAggregatorAPI.Utils;
 using PriceAggregator.Core.IRepository;
 using PriceAggregator.Infrastructure;
 using PriceAggregator.Infrastructure.Repository;
+using PriceAggregatorAPI.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 

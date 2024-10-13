@@ -1,5 +1,4 @@
-﻿using PricAggregatorAPI.Utils;
-using PriceAggregatorAPI;
+﻿using PriceAggregatorAPI;
 using System.ComponentModel.DataAnnotations;
 
 namespace PricAggregatorAPI.Middleware

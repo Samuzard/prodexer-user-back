@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using PricAggregatorAPI.Models.DTOs;
 using PriceAggregator.Core.Entities;
 using PriceAggregator.Core.IRepository;
 using PriceAggregatorAPI;
 using System.Net;
+using PriceAggregatorAPI.Models.DTOs;
 
 namespace PricAggregatorAPI.Controllers
 {
@@ -38,7 +38,7 @@ namespace PricAggregatorAPI.Controllers
                 return NotFound(_response);
             }
 
-            _response.Result = _mapper.Map<List<ProductDTO>>(products);
+            _response.Result = _mapper.Map<List<ProductDto>>(products);
             _response.StatusCode = HttpStatusCode.OK;
             
             return _response;
@@ -64,7 +64,7 @@ namespace PricAggregatorAPI.Controllers
                 return NotFound(_response);
             }
 
-            _response.Result = _mapper.Map<ProductDTO>(product);
+            _response.Result = _mapper.Map<ProductDto>(product);
             _response.StatusCode = HttpStatusCode.OK;
 
             return _response;
