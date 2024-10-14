@@ -5,20 +5,23 @@ using System.Linq.Expressions;
 
 namespace PriceAggregator.Infrastructure.Repository
 {
-    public class ProductRepository : Repository<Product>, IProductRepository
+    public class ProductRepository(ApplicationDbContext dbContext) 
+        : Repository<Product>(dbContext), IProductRepository
     {
-        public ProductRepository(ApplicationDbContext dbContext) : base(dbContext)
-        {
-        }
-
-        public async Task<IEnumerable<Product>> GetAllProducts(Expression<Func<Product, bool>> filter = null)
+        public async Task<IEnumerable<Product>> GetProducts(Expression<Func<Product, bool>> filter = null, bool isTracked = true)
         {
             IQueryable<Product> query = DbContext.Product;
+            
+            query = query.Include(p => p.Category)
+                .Include(p => p.Store);
 
             if (filter != null)
             {
                 query = query.Where(filter);
             }
+
+            if (!isTracked)
+                query = query.AsNoTracking();
 
             var result = await query.ToListAsync();
 

@@ -1,7 +1,7 @@
 ﻿using PriceAggregatorAPI;
 using System.ComponentModel.DataAnnotations;
 
-namespace PricAggregatorAPI.Middleware
+namespace PriceAggregatorAPI.Middleware
 {
     public class ValidationExceptionMiddleware
     {

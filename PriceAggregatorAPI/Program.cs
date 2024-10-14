@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using PricAggregatorAPI.Middleware;
+using PriceAggregatorAPI.Middleware;
 using PriceAggregator.Core.IRepository;
 using PriceAggregator.Infrastructure;
 using PriceAggregator.Infrastructure.Repository;

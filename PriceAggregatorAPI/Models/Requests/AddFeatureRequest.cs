@@ -2,12 +2,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PriceAggregatorAPI.Models.Requests;
 
-public class AddFeatureRequest
+internal class AddFeatureRequest
 {
     [Required]
-    public string Name { get; set; }
+    internal string Name { get; set; }
     
     [Required]
     [MinLength(1)]
-    public IEnumerable<int> ProductIds { get; set; }
+    internal IEnumerable<int> ProductIds { get; set; }
 }

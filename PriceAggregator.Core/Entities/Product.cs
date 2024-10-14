@@ -9,15 +9,9 @@ namespace PriceAggregator.Core.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public string ImagePath { get; set; }
-
-        [ForeignKey(nameof(Store))]
-        public int StoreId { get;set; }
-        public Store Store { get; set; }
-       
         [Required]
         public string Url { get; set; }
         [Required]
-        
         public decimal Price { get; set; }
         [Required]
         [MaxLength(10)]
@@ -26,6 +20,10 @@ namespace PriceAggregator.Core.Entities
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        
+        [ForeignKey(nameof(Store))]
+        public int StoreId { get;set; }
+        public Store Store { get; set; }
         
         public int? FeatureId { get; set; }
         [ForeignKey("FeatureId")]

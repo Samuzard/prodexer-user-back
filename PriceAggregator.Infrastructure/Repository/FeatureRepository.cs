@@ -7,20 +7,23 @@ namespace PriceAggregator.Infrastructure.Repository;
 
 public class FeatureRepository(ApplicationDbContext dbContext) : Repository<Feature>(dbContext), IFeatureRepository
 {
-    public async Task<Feature> GetFeatureById(int id)
+    public async Task<IEnumerable<Feature>> GetFeatures(Expression<Func<Feature, bool>> filter, bool isTracked = true)
     {
-        return await DbContext.Feature.FindAsync(id);
-    }
-
-    public async Task<IEnumerable<Feature>> GetAllFeatures(Expression<Func<Feature, bool>> filter)
-    {
-        IQueryable<Feature> query = DbContext.Feature;
+        IQueryable<Feature> query = DbContext.Feature; 
+         
+        query = query.Include(p=>p.Products)
+                .ThenInclude(s=>s.Store)
+            .Include(p=>p.Products)
+                .ThenInclude(c => c.Category);
 
         if (filter != null)
         {
             query = query.Where(filter);
         }
 
+        if (!isTracked)
+            query = query.AsNoTracking();
+        
         return await query.ToListAsync();
     }
     
@@ -30,6 +33,7 @@ public class FeatureRepository(ApplicationDbContext dbContext) : Repository<Feat
 
         var products = await DbContext.Product
             .Where(p => productIds.Contains(p.Id))
+            .AsNoTracking()
             .ToListAsync();
 
         feature.Name = name;
@@ -44,6 +48,10 @@ public class FeatureRepository(ApplicationDbContext dbContext) : Repository<Feat
 
     public async Task<bool> DeleteFeature(int id)
     {
+        var feature = await GetAsync(f => f.Id == id);
+        if (feature == null)
+            return false;
+
         var associatedProducts = await DbContext.Product
             .Where(p => p.FeatureId == id)
             .ToListAsync();
@@ -52,9 +60,6 @@ public class FeatureRepository(ApplicationDbContext dbContext) : Repository<Feat
         {
             product.FeatureId = null;
         }
-
-        var feature = await DbContext.Feature.FindAsync(id);
-        if (feature == null) return false;
 
         DbContext.Feature.Remove(feature);
 

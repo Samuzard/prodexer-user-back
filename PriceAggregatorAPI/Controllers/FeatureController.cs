@@ -1,7 +1,6 @@
 using System.Net;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using PriceAggregator.Core.Entities;
 using PriceAggregator.Core.IRepository;
 using PriceAggregatorAPI.Models.DTOs;
 using PriceAggregatorAPI.Models.Requests;
@@ -10,21 +9,17 @@ namespace PriceAggregatorAPI.Controllers;
 
 [ApiController]
 [Route("api/FeatureApi")]
-public class FeatureController(
+internal class FeatureController(
     IMapper mapper,
     IFeatureRepository repository,
     ILogger<FeatureController> logger) : ControllerBase
 {
-    private readonly IMapper _mapper = mapper;
-    private readonly IFeatureRepository _repository = repository;
-    private readonly ILogger<FeatureController> _logger = logger;
-
     [HttpGet]
-    public async Task<ActionResult<ApiResponse>> GetAllFeatures()
+    internal async Task<ActionResult<ApiResponse>> GetAllFeatures()
     {
         try
         {
-            var features = await _repository.GetAllFeatures();
+            var features = await repository.GetFeatures();
         
             if (features == null || !features.Any())
             {
@@ -36,18 +31,16 @@ public class FeatureController(
                 });
             }
 
-            var featuresDto = _mapper.Map<ICollection<FeatureDto>>(features);
-            
             return Ok(new ApiResponse
             {
                 IsSuccess = true,
                 StatusCode = HttpStatusCode.OK,
-                Result = featuresDto
+                Result = mapper.Map<IEnumerable<FeatureDto>>(features)
             });
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An error occurred while fetching features");
+            logger.LogError(ex, "An error occurred while fetching features");
 
             return StatusCode(StatusCodes.Status500InternalServerError, new ApiResponse()
             {
@@ -58,8 +51,43 @@ public class FeatureController(
         }
     }
     
+    [HttpGet("{id:int}")]
+    internal async Task<ActionResult<ApiResponse>> GetFeature(int id)
+    {
+        try
+        {
+            var feature = await repository.GetFeatures(f => f.Id == id);
+        
+            if (feature == null || !feature.Any())
+            {
+                return NotFound(new ApiResponse
+                {
+                    IsSuccess = false,
+                    StatusCode = HttpStatusCode.NotFound,
+                    ErrorMessages = ["Feature not found."]
+                });
+            }
+        
+            return Ok(new ApiResponse
+            {
+                IsSuccess = true,
+                StatusCode = HttpStatusCode.OK,
+                Result = mapper.Map<IEnumerable<FeatureDto>>(feature)
+            });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, new ApiResponse
+            {
+                IsSuccess = false,
+                StatusCode = HttpStatusCode.InternalServerError,
+                ErrorMessages = [ex.Message]
+            });
+        }
+    }
+    
     [HttpPost]
-    public async Task<ActionResult<ApiResponse>> AddFeature([FromBody] AddFeatureRequest request)
+    internal async Task<ActionResult<ApiResponse>> AddFeature([FromBody] AddFeatureRequest request)
     {
         if (!ModelState.IsValid)
         {
@@ -76,7 +104,7 @@ public class FeatureController(
 
         try
         {
-            var feature = await _repository.AddFeature(request.ProductIds, request.Name);
+            var feature = await repository.AddFeature(request.ProductIds, request.Name);
             
             if (feature == null)
             {
@@ -88,7 +116,7 @@ public class FeatureController(
                 });
             }
             
-            var featureDto = _mapper.Map<FeatureDto>(feature);
+            var featureDto = mapper.Map<FeatureDto>(feature);
 
             return CreatedAtAction(nameof(GetFeature), new {id = feature.Id}, new ApiResponse
             {
@@ -99,7 +127,7 @@ public class FeatureController(
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "An error occurred while fetching features");
+            logger.LogError(ex, "An error occurred while fetching features");
 
             return StatusCode(StatusCodes.Status500InternalServerError, new ApiResponse()
             {
@@ -109,13 +137,13 @@ public class FeatureController(
             });
         }
     }
-
-    [HttpDelete("{id:int}")]
-    public async Task<ActionResult<ApiResponse>> DeleteFeature(int id) 
+    
+    [HttpPut("{id:int}")]
+    internal async Task<ActionResult<ApiResponse>> UpdateFeature(int id, [FromBody] UpdateFeatureRequest request)
     {
         try
         {
-            var isDeleted = await _repository.DeleteFeature(id);
+            var isDeleted = await repository.DeleteFeature(id);
             if (!isDeleted)
             {
                 return NotFound(new ApiResponse
@@ -139,39 +167,31 @@ public class FeatureController(
         }
     }
     
-    [HttpGet("{id:int}")]
-    public async Task<ActionResult<ApiResponse>> GetFeature(int id)
+    [HttpDelete("{id:int}")]
+    internal async Task<ActionResult<ApiResponse>> DeleteFeature(int id) 
     {
         try
         {
-            var feature = await _repository.GetFeatureById(id);
-        
-            if (feature == null)
+            var isDeleted = await repository.DeleteFeature(id);
+            if (!isDeleted)
             {
                 return NotFound(new ApiResponse
                 {
                     IsSuccess = false,
                     StatusCode = HttpStatusCode.NotFound,
-                    ErrorMessages = new List<string> { "Feature not found." }
+                    ErrorMessages = ["Unable to delete feature. Not found."]
                 });
             }
 
-            var featureDto = _mapper.Map<FeatureDto>(feature);
-        
-            return Ok(new ApiResponse
-            {
-                IsSuccess = true,
-                StatusCode = HttpStatusCode.OK,
-                Result = featureDto
-            });
+            return NoContent();
         }
         catch (Exception ex)
         {
-            return StatusCode(StatusCodes.Status500InternalServerError, new ApiResponse
+            return StatusCode(StatusCodes.Status500InternalServerError, new ApiResponse()
             {
                 IsSuccess = false,
                 StatusCode = HttpStatusCode.InternalServerError,
-                ErrorMessages = new List<string> { ex.Message }
+                ErrorMessages = [ex.Message]
             });
         }
     }
