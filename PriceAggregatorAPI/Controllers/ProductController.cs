@@ -7,8 +7,8 @@ using PriceAggregatorAPI.Models.DTOs;
 namespace PriceAggregatorAPI.Controllers
 {
     [ApiController]
-    [Route("api/ProductApi")]
-    internal class ProductController(
+    [Route("api/Product")]
+    public class ProductController(
         IMapper mapper,
         IProductRepository repository,
         ILogger<ProductController> logger) : ControllerBase
@@ -16,7 +16,7 @@ namespace PriceAggregatorAPI.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        internal async Task<ActionResult<ApiResponse>> GetAllProducts()
+        public async Task<ActionResult<ApiResponse>> GetAllProducts()
         {
             try
             {
@@ -56,7 +56,7 @@ namespace PriceAggregatorAPI.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        internal async Task<ActionResult<ApiResponse>> GetProduct(int id)
+        public async Task<ActionResult<ApiResponse>> GetProduct(int id)
         {
             try
             {

@@ -3,6 +3,7 @@ using PriceAggregatorAPI.Middleware;
 using PriceAggregator.Core.IRepository;
 using PriceAggregator.Infrastructure;
 using PriceAggregator.Infrastructure.Repository;
+using PriceAggregatorAPI.Extensions;
 using PriceAggregatorAPI.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -44,13 +45,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseMiddleware<ValidationExceptionMiddleware>();
-
 app.UseHttpsRedirection();
 
 app.UseCors("AllowAll");
 
 app.UseAuthorization();
+
+app.UseExceptionHandlerMiddleware();
 
 app.MapControllers();
 

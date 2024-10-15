@@ -1,32 +1,31 @@
 ﻿using PriceAggregatorAPI;
 using System.ComponentModel.DataAnnotations;
+using System.Net;
+using System.Text.Json;
 
 namespace PriceAggregatorAPI.Middleware
 {
-    public class ValidationExceptionMiddleware
+    public class ValidationExceptionMiddleware(RequestDelegate request)
     {
-        private readonly RequestDelegate _request;
-
-        public ValidationExceptionMiddleware(RequestDelegate request)
-        {
-            _request = request;
-        }
-
         public async Task InvokeAsync(HttpContext context)
         {
             try
             {
-                await _request(context);
+                await request(context);
             }
             catch (ValidationException exception)
             {
-                context.Response.StatusCode = 400;
+                context.Response.ContentType = "application/json";
+                context.Response.StatusCode = 500;
                 var validationFailureResponse = new ApiResponse
                 {
                     IsSuccess = false,
-                    ErrorMessages = new List<string> { exception.ToString() }
+                    StatusCode = HttpStatusCode.InternalServerError,
+                    ErrorMessages = [exception.ToString()]
                 };
-                await context.Response.WriteAsJsonAsync(validationFailureResponse);
+                var result = JsonSerializer.Serialize(validationFailureResponse);
+                
+                await context.Response.WriteAsJsonAsync(result);
             }
         }
     }

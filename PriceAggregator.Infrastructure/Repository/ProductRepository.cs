@@ -27,5 +27,19 @@ namespace PriceAggregator.Infrastructure.Repository
 
             return result;
         }
+
+        public async Task<IEnumerable<Product>> UpdateProductWithFeatureId(int featureId, int[] productIds)
+        {
+            var products = await GetAllAsync(p => productIds.Contains(p.Id));
+
+            foreach (var product in products)
+            {
+                product.FeatureId = featureId;
+            }
+
+            await SaveAsync();
+
+            return products;
+        } 
     }
 }

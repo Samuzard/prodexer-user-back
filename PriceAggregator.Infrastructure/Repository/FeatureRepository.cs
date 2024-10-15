@@ -27,33 +27,32 @@ public class FeatureRepository(ApplicationDbContext dbContext) : Repository<Feat
         return await query.ToListAsync();
     }
     
-    public async Task<Feature> AddFeature(IEnumerable<int> productIds, string name)
+    public async Task<Feature> AddFeatureWithProducts(int[] productIds, string name)
     {
         var feature = new Feature();
 
         var products = await DbContext.Product
             .Where(p => productIds.Contains(p.Id))
-            .AsNoTracking()
             .ToListAsync();
-
+    
         feature.Name = name;
         feature.Products = products;
-
+    
         await DbContext.Feature.AddAsync(feature);
 
-        await DbContext.SaveChangesAsync();
+        await SaveAsync();
 
         return feature;
     }
-
-    public async Task<bool> DeleteFeature(int id)
+    
+    public async Task<bool> DeleteFeature(int featureId)
     {
-        var feature = await GetAsync(f => f.Id == id);
+        var feature = await GetAsync(f => f.Id == featureId);
         if (feature == null)
             return false;
 
         var associatedProducts = await DbContext.Product
-            .Where(p => p.FeatureId == id)
+            .Where(p => p.FeatureId == featureId)
             .ToListAsync();
 
         foreach (var product in associatedProducts)
@@ -63,8 +62,35 @@ public class FeatureRepository(ApplicationDbContext dbContext) : Repository<Feat
 
         DbContext.Feature.Remove(feature);
 
-        await DbContext.SaveChangesAsync();
+        await SaveAsync();
 
         return true;
+    }
+
+    public async Task<Feature> UpdateFeatureWithProducts(int featureId, string name, int[] productIds)
+    {
+        var feature = await DbContext.Feature
+            .Include(f => f.Products)
+            .FirstOrDefaultAsync(f => f.Id == featureId);
+
+        if (feature == null)
+            return null;
+
+        feature.Products.Clear();
+        
+        var products = await DbContext.Product
+            .Where(p => productIds.Contains(p.Id))
+            .ToListAsync();
+        
+        if (!string.IsNullOrEmpty(name))
+        {
+            feature.Name = name;
+        }
+        
+        feature.Products = products;
+        
+        await SaveAsync();
+
+        return feature;
     }
 }
