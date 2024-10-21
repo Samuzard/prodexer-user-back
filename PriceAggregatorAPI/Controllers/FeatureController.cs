@@ -88,7 +88,7 @@ public class FeatureController(
             });
         }
 
-        return CreatedAtAction(nameof(GetFeature), new { id = feature.Id }, new ApiResponse
+        return CreatedAtAction(nameof(GetFeature), new { featureId = feature.Id }, new ApiResponse
         {
             IsSuccess = true,
             StatusCode = HttpStatusCode.Created,
