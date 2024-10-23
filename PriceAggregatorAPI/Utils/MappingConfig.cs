@@ -9,7 +9,8 @@ namespace PriceAggregatorAPI.Utils
         public MappingConfig()
         {
             CreateMap<Product, ProductDto>()
-                .ForMember(dest => dest.StoreName, opt => opt.MapFrom(src => src.Store.Name));
+                .ForMember(dest => dest.StoreName, opt => opt.MapFrom(src => src.Store.Name))
+                .ForMember(dest => dest.StoreIconPath, opt => opt.MapFrom(src => src.Store.IconPath));
 
             CreateMap<Feature, FeatureDto>()
                 .ForMember(dest => dest.Products, opt => opt.MapFrom(src => src.Products));
