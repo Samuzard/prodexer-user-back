@@ -14,6 +14,8 @@ namespace PriceAggregatorAPI.Utils
 
             CreateMap<Feature, FeatureDto>()
                 .ForMember(dest => dest.Products, opt => opt.MapFrom(src => src.Products));
+
+            CreateMap<Category, CategoryDto>();
         }
     }
 }

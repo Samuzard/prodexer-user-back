@@ -9,12 +9,12 @@ public class FeatureRepository(ApplicationDbContext dbContext) : Repository<Feat
 {
     public async Task<IEnumerable<Feature>> GetFeatures(Expression<Func<Feature, bool>> filter, bool isTracked = true)
     {
-        IQueryable<Feature> query = DbContext.Feature; 
-         
-        query = query.Include(p=>p.Products)
-                .ThenInclude(s=>s.Store)
-            .Include(p=>p.Products)
-                .ThenInclude(c => c.Category);
+        IQueryable<Feature> query = DbContext.Feature;
+
+        query = query.Include(p => p.Products.OrderBy(product => product.Price))
+            .ThenInclude(s => s.Store)
+            .Include(p => p.Products)
+            .ThenInclude(c => c.Category);
 
         if (filter != null)
         {
@@ -23,10 +23,10 @@ public class FeatureRepository(ApplicationDbContext dbContext) : Repository<Feat
 
         if (!isTracked)
             query = query.AsNoTracking();
-        
+
         return await query.ToListAsync();
     }
-    
+
     public async Task<Feature> AddFeatureWithProducts(int[] productIds, string name)
     {
         var feature = new Feature();
@@ -34,17 +34,17 @@ public class FeatureRepository(ApplicationDbContext dbContext) : Repository<Feat
         var products = await DbContext.Product
             .Where(p => productIds.Contains(p.Id))
             .ToListAsync();
-    
+
         feature.Name = name;
         feature.Products = products;
-    
+
         await DbContext.Feature.AddAsync(feature);
 
         await SaveAsync();
 
         return feature;
     }
-    
+
     public async Task<bool> DeleteFeature(int featureId)
     {
         var feature = await GetAsync(f => f.Id == featureId);
@@ -77,18 +77,18 @@ public class FeatureRepository(ApplicationDbContext dbContext) : Repository<Feat
             return null;
 
         feature.Products.Clear();
-        
+
         var products = await DbContext.Product
             .Where(p => productIds.Contains(p.Id))
             .ToListAsync();
-        
+
         if (!string.IsNullOrEmpty(name))
         {
             feature.Name = name;
         }
-        
+
         feature.Products = products;
-        
+
         await SaveAsync();
 
         return feature;
