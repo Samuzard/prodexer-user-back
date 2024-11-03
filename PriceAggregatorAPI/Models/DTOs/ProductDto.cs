@@ -10,5 +10,6 @@
         public string StoreName { get; set; }
         public string StoreIconPath { get; set; }
         public string ImagePath { get; set; }
+        public decimal? Rating { get; set; }
     }
 }

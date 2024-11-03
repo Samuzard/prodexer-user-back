@@ -16,7 +16,7 @@ namespace PriceAggregator.Core.Entities
         [Required]
         [MaxLength(10)]
         public string PriceUnit { get; set; }
-        
+        public decimal? Rating { get; set; }
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
         public Category Category { get; set; }

@@ -85,6 +85,7 @@ namespace PriceAggregator.Infrastructure.Migrations
                     StoreId = table.Column<int>(type: "integer", nullable: false),
                     Url = table.Column<string>(type: "text", nullable: false),
                     Price = table.Column<decimal>(type: "numeric", nullable: false),
+                    Rating = table.Column<decimal>(type: "numeric", nullable: true),
                     PriceUnit = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
                     CategoryId = table.Column<int>(type: "integer", nullable: false),
                     FeatureId = table.Column<int>(type: "integer", nullable: true),
