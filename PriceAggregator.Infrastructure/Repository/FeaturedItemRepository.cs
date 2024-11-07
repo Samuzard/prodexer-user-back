@@ -5,11 +5,11 @@ using PriceAggregator.Core.IRepository;
 
 namespace PriceAggregator.Infrastructure.Repository;
 
-public class FeatureRepository(ApplicationDbContext dbContext) : Repository<Feature>(dbContext), IFeatureRepository
+public class FeaturedItemRepository(ApplicationDbContext dbContext) : Repository<FeaturedItem>(dbContext), IFeaturedItemRepository
 {
-    public async Task<IEnumerable<Feature>> GetFeatures(Expression<Func<Feature, bool>> filter, bool isTracked = true)
+    public async Task<IEnumerable<FeaturedItem>> GetFeaturedItems(Expression<Func<FeaturedItem, bool>> filter, bool isTracked = true)
     {
-        IQueryable<Feature> query = DbContext.Feature;
+        IQueryable<FeaturedItem> query = DbContext.FeaturedItems;
 
         query = query.Include(p => p.Products.OrderBy(product => product.Price))
             .ThenInclude(s => s.Store)
@@ -27,31 +27,31 @@ public class FeatureRepository(ApplicationDbContext dbContext) : Repository<Feat
         return await query.ToListAsync();
     }
 
-    public async Task<Feature> AddFeatureWithProducts(int[] productIds, string name)
+    public async Task<FeaturedItem> AddFeaturedProducts(int[] productIds, string name)
     {
-        var feature = new Feature();
+        var feature = new FeaturedItem();
 
-        var products = await DbContext.Product
+        var products = await DbContext.Products
             .Where(p => productIds.Contains(p.Id))
             .ToListAsync();
 
         feature.Name = name;
         feature.Products = products;
 
-        await DbContext.Feature.AddAsync(feature);
+        await DbContext.FeaturedItems.AddAsync(feature);
 
         await SaveAsync();
 
         return feature;
     }
 
-    public async Task<bool> DeleteFeature(int featureId)
+    public async Task<bool> DeleteFeaturedItem(int featureId)
     {
         var feature = await GetAsync(f => f.Id == featureId);
         if (feature == null)
             return false;
 
-        var associatedProducts = await DbContext.Product
+        var associatedProducts = await DbContext.Products
             .Where(p => p.FeatureId == featureId)
             .ToListAsync();
 
@@ -60,16 +60,16 @@ public class FeatureRepository(ApplicationDbContext dbContext) : Repository<Feat
             product.FeatureId = null;
         }
 
-        DbContext.Feature.Remove(feature);
+        DbContext.FeaturedItems.Remove(feature);
 
         await SaveAsync();
 
         return true;
     }
 
-    public async Task<Feature> UpdateFeatureWithProducts(int featureId, string name, int[] productIds)
+    public async Task<FeaturedItem> UpdateFeaturedProduct(int featureId, string name, int[] productIds)
     {
-        var feature = await DbContext.Feature
+        var feature = await DbContext.FeaturedItems
             .Include(f => f.Products)
             .FirstOrDefaultAsync(f => f.Id == featureId);
 
@@ -78,7 +78,7 @@ public class FeatureRepository(ApplicationDbContext dbContext) : Repository<Feat
 
         feature.Products.Clear();
 
-        var products = await DbContext.Product
+        var products = await DbContext.Products
             .Where(p => productIds.Contains(p.Id))
             .ToListAsync();
 

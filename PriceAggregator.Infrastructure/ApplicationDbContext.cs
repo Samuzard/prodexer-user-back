@@ -3,18 +3,12 @@ using PriceAggregator.Core.Entities;
 
 namespace PriceAggregator.Infrastructure
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
     {
-        public DbSet<Product> Product { get; set; }
-        public DbSet<Category> Category { get; set; }
-        public DbSet<Store> Store { get; set; }
-        public DbSet<Feature> Feature { get; set; }
-        
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-
-        }
+        public DbSet<Product> Products { get; init; }
+        public DbSet<Category> Categories { get; init; }
+        public DbSet<Store> Stores { get; init; }
+        public DbSet<FeaturedItem> FeaturedItems { get; init; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,8 +19,7 @@ namespace PriceAggregator.Infrastructure
                     CreatedBy = "admin",
                     Id = 1,
                     Name = "Amazon",
-                    IconPath = "PlaceholderPath"
-
+                    IconPath = "/images/store_icons/amazon_logo.png"
                 },
                 new Store
                 {
@@ -34,8 +27,7 @@ namespace PriceAggregator.Infrastructure
                     CreatedBy = "admin",
                     Id = 2,
                     Name = "Stirling Sports",
-                    IconPath = "PlaceholderPath"
-
+                    IconPath = "/images/store_icons/stirling_sports.png"
                 },
                 new Store
                 {
@@ -43,8 +35,7 @@ namespace PriceAggregator.Infrastructure
                     CreatedBy = "admin",
                     Id = 3,
                     Name = "BestBuy",
-                    IconPath = "PlaceholderPath"
-
+                    IconPath = "/images/store_icons/best_buy_logo.png"
                 },
                 new Store
                 {
@@ -52,8 +43,7 @@ namespace PriceAggregator.Infrastructure
                     CreatedBy = "admin",
                     Id = 4,
                     Name = "AliExpress",
-                    IconPath = "PlaceholderPath"
-
+                    IconPath = "/images/store_icons/ali_express_logo.png"
                 }
             );
 
@@ -65,14 +55,13 @@ namespace PriceAggregator.Infrastructure
                     Id = 1,
                     Name = "Shoes",
                     TreeLevel = 0,
-
                 },
                 new Category
                 {
                     //CreationDate = DateTime.Now,
                     CreatedBy = "admin",
                     Id = 2,
-                    Name = "Womens Shoes",
+                    Name = "Women's Shoes",
                     TreeLevel = 1,
                     ParentId = 1
                 },
@@ -98,7 +87,7 @@ namespace PriceAggregator.Infrastructure
                     //CreationDate = DateTime.Now,
                     CreatedBy = "admin",
                     Id = 5,
-                    Name = "Womens Shirts",
+                    Name = "Women's Shirts",
                     TreeLevel = 1,
                     ParentId = 3
                 },
@@ -117,7 +106,6 @@ namespace PriceAggregator.Infrastructure
                     CreatedBy = "admin",
                     Id = 7,
                     Name = "Jackets",
-
                 },
                 new Category
                 {
@@ -221,7 +209,7 @@ namespace PriceAggregator.Infrastructure
                },
                new Product
                {
-                   Name = "IPhone 15",
+                   Name = "Apple - iPhone 15 128GB - Blue (AT&T)",
                    //CreationDate = DateTime.Now,
                    CreatedBy = "admin",
                    Id = 8,
@@ -234,7 +222,7 @@ namespace PriceAggregator.Infrastructure
                },
                new Product
                {
-                   Name = "IPhone 15",
+                   Name = "Apple iphone 15 (128gb) - black ",
                    //CreationDate = DateTime.Now,
                    CreatedBy = "admin",
                    Id = 9,
@@ -243,46 +231,47 @@ namespace PriceAggregator.Infrastructure
                    Price = 720M,
                    PriceUnit = "$",
                    CategoryId = 9,
-                   ImagePath = "https://cdn.mos.cms.futurecdn.net/yDn3ZSXu9eSBxmXQDZ4PCF-650-80.jpg.webp"
+                   ImagePath = "https://media.cnn.com/api/v1/images/stellar/prod/230919073346-iphone-15-review-cnnu-1.jpg?c=16x9"
                },
                new Product
                {
-                   Name = "IPhone 15",
+                   Name = "iPhone 15 Pro Max 256GB/512GB/1TB Dual eSIM 6.7\" Genuine LTPO Super Retina XDR OLED Face ID NFC A17Pro 8GB 98% New 5G Cell Phone",
                    //CreationDate = DateTime.Now,
                    CreatedBy = "admin",
                    Id = 10,
                    StoreId = 4,
-                   Url = "https://www.amazon.fr/Apple-iPhone-15-128-Go/dp/B0CHXFCYCR?language=en_GB",
+                   Url = "https://www.aliexpress.com/item/1005007893612979.html?spm=a2g0o.productlist.main.25.eb42291ejzuZZJ&algo_pvid=243f2f67-93b3-436e-b290-e9eb57e49582&algo_exp_id=243f2f67-93b3-436e-b290-e9eb57e49582-12&pdp_npi=4%40dis%21TND%213862.560%213167.299%21%21%211248.00%211023.36%21%402141122217309344674181553e7a2d%2112000042744921902%21sea%21TN%210%21ABX&curPageLogUid=i7MgtMiDzT4s&utparam-url=scene%3Asearch%7Cquery_from%3A",
                    Price = 709M,
                    PriceUnit = "$",
                    CategoryId = 9,
-                   ImagePath = "https://cdn.mos.cms.futurecdn.net/yDn3ZSXu9eSBxmXQDZ4PCF-650-80.jpg.webp"
+                   ImagePath = "https://ae-pic-a1.aliexpress-media.com/kf/See613671846f48ccba7a890a8efbe7a05/iPhone-15-Pro-Max-256GB-512GB-1TB-Dual-eSIM-6-7-Genuine-LTPO-Super-Retina-XDR.jpg",
                },
                new Product
                {
-                   Name = "Samsung 24 Ultra",
+                   Name = "Apple iPhone 12, 256GB, White - (Refurbished) ",
                    //CreationDate = DateTime.Now,
                    CreatedBy = "admin",
                    Id = 11,
-                   StoreId = 1,
-                   Url = "https://www.amazon.com/SAMSUNG-Smartphone-Unlocked-Android-Titanium/dp/B0CMDM65JH",
-                   Price = 1012.14M,
+                   StoreId = 4,
+                   Url = "https://www.amazon.fr/-/en/dp/B08PCC743H/ref=sr_1_2?crid=1A6VUNFFEGUH&dib=eyJ2IjoiMSJ9.1pxt4S85q2lJWGtflE7yJHGBbd0LNA8qqu712gdan0UMhfFxGb4K0XeAaRjjHtNX-2HvFAqwbcNgbS68deV2LcHOdpN-IfNo9PxvZPDGO_5tRt_PYm5qCZahsxV8TLamYQmlzXIipx5S3plK3NnosvM9qoMClfNvK9z4jWdj_28NC7sfjoyVIvfzoGIqnhtqSyEl4d3OpT9Ztk3g-jVYcUu1IwkhLWy-CrBxVwl8ob8te0Mc-D9WdZzNutm0cXAHx2guk_O9AcnW_D59Kli2vicnmsKNvVK67NxGTfNLpMk.ZNfVCpdxi4gtp87BDncK0ovvfeGJaPigS0IfCjB8L8M&dib_tag=se&keywords=Iphone%2B15&qid=1730941701&sprefix=iphone%2B15%2Caps%2C180&sr=8-2&th=1",
+                   Price = 709M,
                    PriceUnit = "$",
                    CategoryId = 9,
-                   ImagePath = "https://www.samsungshop.tn/26760-large_default/galaxy-s24-ultra-prix-tunisie.jpg"
+                   ImagePath = "https://m.media-amazon.com/images/I/711wsjBtWeL._AC_SL1500_.jpg",
                },
+               
                new Product
                {
                    Name = "Samsung 24 Ultra",
                    //CreationDate = DateTime.Now,
                    CreatedBy = "admin",
                    Id = 12,
-                   StoreId = 3,
-                   Url = "https://www.bestbuy.com/site/samsung-galaxy-s24-ultra-512gb-unlocked-titanium-black/6569875.p?skuId=6569875",
-                   Price = 1091.99M,
+                   StoreId = 1,
+                   Url = "https://www.amazon.com/SAMSUNG-Smartphone-Unlocked-Android-Titanium/dp/B0CMDM65JH",
+                   Price = 1012.14M,
                    PriceUnit = "$",
                    CategoryId = 9,
-                   ImagePath = "https://www.samsungshop.tn/26760-large_default/galaxy-s24-ultra-prix-tunisie.jpg"
+                   ImagePath = "https://m.media-amazon.com/images/I/71WcjsOVOmL.__AC_SX300_SY300_QL70_FMwebp_.jpg"
                },
                new Product
                {
@@ -290,12 +279,25 @@ namespace PriceAggregator.Infrastructure
                    //CreationDate = DateTime.Now,
                    CreatedBy = "admin",
                    Id = 13,
+                   StoreId = 3,
+                   Url = "https://www.bestbuy.com/site/samsung-galaxy-s24-ultra-512gb-unlocked-titanium-black/6569875.p?skuId=6569875",
+                   Price = 1091.99M,
+                   PriceUnit = "$",
+                   CategoryId = 9,
+                   ImagePath = "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6569/6569875_sd.jpg;maxHeight=640;maxWidth=550;format=webp"
+               },
+               new Product
+               {
+                   Name = "Samsung 24 Ultra",
+                   //CreationDate = DateTime.Now,
+                   CreatedBy = "admin",
+                   Id = 14,
                    StoreId = 4,
                    Url = "https://www.aliexpress.com/item/1005006524667199.html",
                    Price = 960.61M,
                    PriceUnit = "$",
                    CategoryId = 9,
-                   ImagePath = "https://www.samsungshop.tn/26760-large_default/galaxy-s24-ultra-prix-tunisie.jpg"
+                   ImagePath = "https://www.ooredoo.tn/Personal/9085-large_default/portable-samsung-galaxy-s24-ultra.jpg",
                }
             );
         }

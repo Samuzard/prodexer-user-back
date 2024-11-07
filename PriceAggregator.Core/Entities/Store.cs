@@ -11,6 +11,6 @@ namespace PriceAggregator.Core.Entities
         public string IconPath { get; set; }
         public int? FeatureId { get; set; }
         [ForeignKey("FeatureId")]
-        public Feature Feature { get; set; }
+        public FeaturedItem FeaturedItem { get; set; }
     }
 }

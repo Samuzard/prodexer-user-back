@@ -9,46 +9,48 @@ using PriceAggregatorAPI.Utils;
 namespace PriceAggregatorAPI.Controllers;
 
 [ApiController]
-[Route("api/Feature")]
-public class FeatureController(
+[Route("api/FeaturedItem")]
+public class FeaturedItemController(
     IMapper mapper,
-    IFeatureRepository featureRepository) : ControllerBase
+    IFeaturedItemRepository featuredItemRepository) : ControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult<ApiResponse>> GetAllFeatures()
+    public async Task<ActionResult<ApiResponse>> GetAllFeaturedItems()
     {
-        var features = await featureRepository.GetFeatures();
+        var featuredItems = await featuredItemRepository.GetFeaturedItems();
 
-        if (features == null || !features.Any())
+        if (featuredItems == null || !featuredItems.Any())
         {
             return NotFound(new ApiResponse
             {
                 IsSuccess = false,
                 StatusCode = HttpStatusCode.NotFound,
-                ErrorMessages = ["Unable to create feature. Product not found."]
+                ErrorMessages = ["Unable to create featured item. Product not found."]
             });
         }
 
+        var dto = mapper.Map<IEnumerable<FeaturedItemDto>>(featuredItems);
+        
         return Ok(new ApiResponse
         {
             IsSuccess = true,
             StatusCode = HttpStatusCode.OK,
-            Result = mapper.Map<IEnumerable<FeatureDto>>(features)
+            Result = dto
         });
     }
 
-    [HttpGet("{featureId:int}")]
-    public async Task<ActionResult<ApiResponse>> GetFeature(int featureId)
+    [HttpGet("{featuredItemId:int}")]
+    public async Task<ActionResult<ApiResponse>> GetFeaturedItem(int featuredItemId)
     {
-        var feature = await featureRepository.GetFeatures(f => f.Id == featureId);
+        var featuredItem = await featuredItemRepository.GetFeaturedItems(f => f.Id == featuredItemId);
 
-        if (feature == null || !feature.Any())
+        if (featuredItem == null || !featuredItem.Any())
         {
             return NotFound(new ApiResponse
             {
                 IsSuccess = false,
                 StatusCode = HttpStatusCode.NotFound,
-                ErrorMessages = ["Feature not found."]
+                ErrorMessages = ["Featured item not found."]
             });
         }
 
@@ -56,14 +58,14 @@ public class FeatureController(
         {
             IsSuccess = true,
             StatusCode = HttpStatusCode.OK,
-            Result = mapper.Map<IEnumerable<FeatureDto>>(feature)
+            Result = mapper.Map<IEnumerable<FeaturedItemDto>>(featuredItem)
         });
     }
 
     [HttpPost]
-    public async Task<ActionResult<ApiResponse>> AddFeature([FromBody] FeatureRequest request)
+    public async Task<ActionResult<ApiResponse>> AddFeaturedItem([FromBody] FeaturedItemRequest request)
     {
-        var isValid = FeatureHelper.ValidateRequest(ModelState, out var errorMessages,
+        var isValid = FeaturedItemHelper.ValidateRequest(ModelState, out var errorMessages,
             (name) => !string.IsNullOrEmpty(name), request?.Name);
 
         if (!isValid)
@@ -76,30 +78,30 @@ public class FeatureController(
             });
         }
 
-        var feature = await featureRepository.AddFeatureWithProducts(request?.ProductIds, request?.Name);
+        var featuredItem = await featuredItemRepository.AddFeaturedProducts(request?.ProductIds, request?.Name);
 
-        if (feature == null)
+        if (featuredItem == null)
         {
             return NotFound(new ApiResponse()
             {
                 IsSuccess = false,
                 StatusCode = HttpStatusCode.NotFound,
-                ErrorMessages = ["Unable to create feature. Product not found."]
+                ErrorMessages = ["Unable to create featured item. Product not found."]
             });
         }
 
-        return CreatedAtAction(nameof(GetFeature), new { featureId = feature.Id }, new ApiResponse
+        return CreatedAtAction(nameof(GetFeaturedItem), new { featuredItemId = featuredItem.Id }, new ApiResponse
         {
             IsSuccess = true,
             StatusCode = HttpStatusCode.Created,
-            Result = mapper.Map<FeatureDto>(feature)
+            Result = mapper.Map<FeaturedItemDto>(featuredItem)
         });
     }
 
-    [HttpPut("{featureId:int}")]
-    public async Task<ActionResult<ApiResponse>> UpdateFeature(int featureId, [FromBody] FeatureRequest request)
+    [HttpPut("{featuredItemId:int}")]
+    public async Task<ActionResult<ApiResponse>> UpdateFeaturedItem(int featuredItemId, [FromBody] FeaturedItemRequest request)
     {
-        var isValid = FeatureHelper.ValidateRequest(ModelState, out var errorMessages,
+        var isValid = FeaturedItemHelper.ValidateRequest(ModelState, out var errorMessages,
             (productIds) => productIds?.Length > 0, request?.ProductIds);
 
         if (!isValid)
@@ -112,15 +114,15 @@ public class FeatureController(
             });
         }
 
-        var feature = await featureRepository.UpdateFeatureWithProducts(featureId, request?.Name, request?.ProductIds);
+        var featuredItem = await featuredItemRepository.UpdateFeaturedProduct(featuredItemId, request?.Name, request?.ProductIds);
 
-        if (feature == null)
+        if (featuredItem == null)
         {
             return NotFound(new ApiResponse
             {
                 IsSuccess = false,
                 StatusCode = HttpStatusCode.NotFound,
-                ErrorMessages = ["Unable to delete feature. Not found."]
+                ErrorMessages = ["Unable to delete featured item. Not found."]
             });
         }
 
@@ -128,21 +130,21 @@ public class FeatureController(
         {
             IsSuccess = true,
             StatusCode = HttpStatusCode.OK,
-            Result = mapper.Map<FeatureDto>(feature)
+            Result = mapper.Map<FeaturedItemDto>(featuredItem)
         });
     }
 
-    [HttpDelete("{featureId:int}")]
-    public async Task<ActionResult<ApiResponse>> DeleteFeature(int featureId)
+    [HttpDelete("{featuredItemId:int}")]
+    public async Task<ActionResult<ApiResponse>> DeleteFeaturedItem(int featuredItemId)
     {
-        var isDeleted = await featureRepository.DeleteFeature(featureId);
+        var isDeleted = await featuredItemRepository.DeleteFeaturedItem(featuredItemId);
         if (!isDeleted)
         {
             return NotFound(new ApiResponse
             {
                 IsSuccess = false,
                 StatusCode = HttpStatusCode.NotFound,
-                ErrorMessages = ["Unable to delete feature. Not found."]
+                ErrorMessages = ["Unable to delete featured item. Not found."]
             });
         }
 

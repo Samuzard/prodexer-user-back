@@ -17,6 +17,7 @@ namespace PriceAggregator.Core.Entities
         [MaxLength(10)]
         public string PriceUnit { get; set; }
         public decimal? Rating { get; set; }
+        public string StoreIconPath { get; set; }
         [ForeignKey(nameof(Category))]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
@@ -27,6 +28,6 @@ namespace PriceAggregator.Core.Entities
         
         public int? FeatureId { get; set; }
         [ForeignKey("FeatureId")]
-        public Feature Feature { get; set; }
+        public FeaturedItem FeaturedItem { get; set; }
     }
 }

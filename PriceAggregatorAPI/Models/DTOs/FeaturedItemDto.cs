@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PriceAggregatorAPI.Models.DTOs;
 
-public class FeatureDto
+public class FeaturedItemDto
 {
     public int Id { get; set; }
     public string Name { get; set; }

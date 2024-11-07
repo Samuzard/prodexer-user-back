@@ -9,7 +9,7 @@ public class CategoryRepository(ApplicationDbContext  dbContext) : Repository<Ca
 {
     public async Task<IEnumerable<Category>> GetCategories(Expression<Func<Category, bool>> filter = null, bool isTracked = true)
     {
-        var query = dbContext.Category.AsQueryable();
+        var query = dbContext.Categories.AsQueryable();
         
         if(filter != null)
             query = query.Where(filter);

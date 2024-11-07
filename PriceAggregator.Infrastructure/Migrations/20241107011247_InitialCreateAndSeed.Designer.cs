@@ -12,8 +12,8 @@ using PriceAggregator.Infrastructure;
 namespace PriceAggregator.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241103011322_AddRatingColumnToProduct")]
-    partial class AddRatingColumnToProduct
+    [Migration("20241107011247_InitialCreateAndSeed")]
+    partial class InitialCreateAndSeed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,7 +57,7 @@ namespace PriceAggregator.Infrastructure.Migrations
 
                     b.HasIndex("FeatureId");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
 
                     b.HasData(
                         new
@@ -72,7 +72,7 @@ namespace PriceAggregator.Infrastructure.Migrations
                         {
                             Id = 2,
                             CreatedBy = "admin",
-                            Name = "Womens Shoes",
+                            Name = "Women's Shoes",
                             ParentId = 1,
                             TreeLevel = 1
                         },
@@ -96,7 +96,7 @@ namespace PriceAggregator.Infrastructure.Migrations
                         {
                             Id = 5,
                             CreatedBy = "admin",
-                            Name = "Womens Shirts",
+                            Name = "Women's Shirts",
                             ParentId = 3,
                             TreeLevel = 1
                         },
@@ -134,7 +134,7 @@ namespace PriceAggregator.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("PriceAggregator.Core.Entities.Feature", b =>
+            modelBuilder.Entity("PriceAggregator.Core.Entities.FeaturedItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -154,7 +154,7 @@ namespace PriceAggregator.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Feature");
+                    b.ToTable("FeaturedItems");
                 });
 
             modelBuilder.Entity("PriceAggregator.Core.Entities.Product", b =>
@@ -192,8 +192,11 @@ namespace PriceAggregator.Infrastructure.Migrations
                         .HasMaxLength(10)
                         .HasColumnType("character varying(10)");
 
-                    b.Property<int?>("Rating")
-                        .HasColumnType("integer");
+                    b.Property<decimal?>("Rating")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("StoreIconPath")
+                        .HasColumnType("text");
 
                     b.Property<int>("StoreId")
                         .HasColumnType("integer");
@@ -213,7 +216,7 @@ namespace PriceAggregator.Infrastructure.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("Product");
+                    b.ToTable("Products");
 
                     b.HasData(
                         new
@@ -299,7 +302,7 @@ namespace PriceAggregator.Infrastructure.Migrations
                             CategoryId = 9,
                             CreatedBy = "admin",
                             ImagePath = "https://cdn.mos.cms.futurecdn.net/yDn3ZSXu9eSBxmXQDZ4PCF-650-80.jpg.webp",
-                            Name = "IPhone 15",
+                            Name = "Apple - iPhone 15 128GB - Blue (AT&T)",
                             Price = 729.99m,
                             PriceUnit = "$",
                             StoreId = 3,
@@ -310,8 +313,8 @@ namespace PriceAggregator.Infrastructure.Migrations
                             Id = 9,
                             CategoryId = 9,
                             CreatedBy = "admin",
-                            ImagePath = "https://cdn.mos.cms.futurecdn.net/yDn3ZSXu9eSBxmXQDZ4PCF-650-80.jpg.webp",
-                            Name = "IPhone 15",
+                            ImagePath = "https://media.cnn.com/api/v1/images/stellar/prod/230919073346-iphone-15-review-cnnu-1.jpg?c=16x9",
+                            Name = "Apple iphone 15 (128gb) - black ",
                             Price = 720m,
                             PriceUnit = "$",
                             StoreId = 1,
@@ -322,19 +325,31 @@ namespace PriceAggregator.Infrastructure.Migrations
                             Id = 10,
                             CategoryId = 9,
                             CreatedBy = "admin",
-                            ImagePath = "https://cdn.mos.cms.futurecdn.net/yDn3ZSXu9eSBxmXQDZ4PCF-650-80.jpg.webp",
-                            Name = "IPhone 15",
+                            ImagePath = "https://ae-pic-a1.aliexpress-media.com/kf/See613671846f48ccba7a890a8efbe7a05/iPhone-15-Pro-Max-256GB-512GB-1TB-Dual-eSIM-6-7-Genuine-LTPO-Super-Retina-XDR.jpg",
+                            Name = "iPhone 15 Pro Max 256GB/512GB/1TB Dual eSIM 6.7\" Genuine LTPO Super Retina XDR OLED Face ID NFC A17Pro 8GB 98% New 5G Cell Phone",
                             Price = 709m,
                             PriceUnit = "$",
                             StoreId = 4,
-                            Url = "https://www.amazon.fr/Apple-iPhone-15-128-Go/dp/B0CHXFCYCR?language=en_GB"
+                            Url = "https://www.aliexpress.com/item/1005007893612979.html?spm=a2g0o.productlist.main.25.eb42291ejzuZZJ&algo_pvid=243f2f67-93b3-436e-b290-e9eb57e49582&algo_exp_id=243f2f67-93b3-436e-b290-e9eb57e49582-12&pdp_npi=4%40dis%21TND%213862.560%213167.299%21%21%211248.00%211023.36%21%402141122217309344674181553e7a2d%2112000042744921902%21sea%21TN%210%21ABX&curPageLogUid=i7MgtMiDzT4s&utparam-url=scene%3Asearch%7Cquery_from%3A"
                         },
                         new
                         {
                             Id = 11,
                             CategoryId = 9,
                             CreatedBy = "admin",
-                            ImagePath = "https://www.samsungshop.tn/26760-large_default/galaxy-s24-ultra-prix-tunisie.jpg",
+                            ImagePath = "https://m.media-amazon.com/images/G/08/apparel/rcxgs/tile._CB483369919_.gif",
+                            Name = "Apple iPhone 12, 256GB, White - (Refurbished) ",
+                            Price = 709m,
+                            PriceUnit = "$",
+                            StoreId = 4,
+                            Url = "https://www.amazon.fr/-/en/dp/B08PCC743H/ref=sr_1_2?crid=1A6VUNFFEGUH&dib=eyJ2IjoiMSJ9.1pxt4S85q2lJWGtflE7yJHGBbd0LNA8qqu712gdan0UMhfFxGb4K0XeAaRjjHtNX-2HvFAqwbcNgbS68deV2LcHOdpN-IfNo9PxvZPDGO_5tRt_PYm5qCZahsxV8TLamYQmlzXIipx5S3plK3NnosvM9qoMClfNvK9z4jWdj_28NC7sfjoyVIvfzoGIqnhtqSyEl4d3OpT9Ztk3g-jVYcUu1IwkhLWy-CrBxVwl8ob8te0Mc-D9WdZzNutm0cXAHx2guk_O9AcnW_D59Kli2vicnmsKNvVK67NxGTfNLpMk.ZNfVCpdxi4gtp87BDncK0ovvfeGJaPigS0IfCjB8L8M&dib_tag=se&keywords=Iphone%2B15&qid=1730941701&sprefix=iphone%2B15%2Caps%2C180&sr=8-2&th=1"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            CategoryId = 9,
+                            CreatedBy = "admin",
+                            ImagePath = "https://m.media-amazon.com/images/I/71WcjsOVOmL.__AC_SX300_SY300_QL70_FMwebp_.jpg",
                             Name = "Samsung 24 Ultra",
                             Price = 1012.14m,
                             PriceUnit = "$",
@@ -343,10 +358,10 @@ namespace PriceAggregator.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = 12,
+                            Id = 13,
                             CategoryId = 9,
                             CreatedBy = "admin",
-                            ImagePath = "https://www.samsungshop.tn/26760-large_default/galaxy-s24-ultra-prix-tunisie.jpg",
+                            ImagePath = "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6569/6569875_sd.jpg;maxHeight=640;maxWidth=550;format=webp",
                             Name = "Samsung 24 Ultra",
                             Price = 1091.99m,
                             PriceUnit = "$",
@@ -355,10 +370,10 @@ namespace PriceAggregator.Infrastructure.Migrations
                         },
                         new
                         {
-                            Id = 13,
+                            Id = 14,
                             CategoryId = 9,
                             CreatedBy = "admin",
-                            ImagePath = "https://www.samsungshop.tn/26760-large_default/galaxy-s24-ultra-prix-tunisie.jpg",
+                            ImagePath = "https://www.ooredoo.tn/Personal/9085-large_default/portable-samsung-galaxy-s24-ultra.jpg",
                             Name = "Samsung 24 Ultra",
                             Price = 960.61m,
                             PriceUnit = "$",
@@ -396,46 +411,46 @@ namespace PriceAggregator.Infrastructure.Migrations
 
                     b.HasIndex("FeatureId");
 
-                    b.ToTable("Store");
+                    b.ToTable("Stores");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
                             CreatedBy = "admin",
-                            IconPath = "PlaceholderPath",
+                            IconPath = "/images/store_icons/amazon_logo.png",
                             Name = "Amazon"
                         },
                         new
                         {
                             Id = 2,
                             CreatedBy = "admin",
-                            IconPath = "PlaceholderPath",
+                            IconPath = "/images/store_icons/stirling_sports.png",
                             Name = "Stirling Sports"
                         },
                         new
                         {
                             Id = 3,
                             CreatedBy = "admin",
-                            IconPath = "PlaceholderPath",
+                            IconPath = "/images/store_icons/best_buy_logo.png",
                             Name = "BestBuy"
                         },
                         new
                         {
                             Id = 4,
                             CreatedBy = "admin",
-                            IconPath = "PlaceholderPath",
+                            IconPath = "/images/store_icons/ali_express_logo.png",
                             Name = "AliExpress"
                         });
                 });
 
             modelBuilder.Entity("PriceAggregator.Core.Entities.Category", b =>
                 {
-                    b.HasOne("PriceAggregator.Core.Entities.Feature", "Feature")
+                    b.HasOne("PriceAggregator.Core.Entities.FeaturedItem", "FeaturedItem")
                         .WithMany("Categories")
                         .HasForeignKey("FeatureId");
 
-                    b.Navigation("Feature");
+                    b.Navigation("FeaturedItem");
                 });
 
             modelBuilder.Entity("PriceAggregator.Core.Entities.Product", b =>
@@ -446,7 +461,7 @@ namespace PriceAggregator.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PriceAggregator.Core.Entities.Feature", "Feature")
+                    b.HasOne("PriceAggregator.Core.Entities.FeaturedItem", "FeaturedItem")
                         .WithMany("Products")
                         .HasForeignKey("FeatureId");
 
@@ -458,21 +473,21 @@ namespace PriceAggregator.Infrastructure.Migrations
 
                     b.Navigation("Category");
 
-                    b.Navigation("Feature");
+                    b.Navigation("FeaturedItem");
 
                     b.Navigation("Store");
                 });
 
             modelBuilder.Entity("PriceAggregator.Core.Entities.Store", b =>
                 {
-                    b.HasOne("PriceAggregator.Core.Entities.Feature", "Feature")
+                    b.HasOne("PriceAggregator.Core.Entities.FeaturedItem", "FeaturedItem")
                         .WithMany("Stores")
                         .HasForeignKey("FeatureId");
 
-                    b.Navigation("Feature");
+                    b.Navigation("FeaturedItem");
                 });
 
-            modelBuilder.Entity("PriceAggregator.Core.Entities.Feature", b =>
+            modelBuilder.Entity("PriceAggregator.Core.Entities.FeaturedItem", b =>
                 {
                     b.Navigation("Categories");
 

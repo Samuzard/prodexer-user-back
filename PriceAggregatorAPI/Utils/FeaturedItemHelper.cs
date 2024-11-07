@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace PriceAggregatorAPI.Utils;
 
-public static class FeatureHelper
+public static class FeaturedItemHelper
 {
     public static bool ValidateRequest<T>(ModelStateDictionary modelState,out List<string> errorMessage,
         Func<T, bool> validate, T validationProperty)

@@ -12,7 +12,7 @@ namespace PriceAggregatorAPI.Utils
                 .ForMember(dest => dest.StoreName, opt => opt.MapFrom(src => src.Store.Name))
                 .ForMember(dest => dest.StoreIconPath, opt => opt.MapFrom(src => src.Store.IconPath));
 
-            CreateMap<Feature, FeatureDto>()
+            CreateMap<FeaturedItem, FeaturedItemDto>()
                 .ForMember(dest => dest.Products, opt => opt.MapFrom(src => src.Products));
 
             CreateMap<Category, CategoryDto>();

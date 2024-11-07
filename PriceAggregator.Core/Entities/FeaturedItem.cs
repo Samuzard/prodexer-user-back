@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PriceAggregator.Core.Entities;
 
-public class Feature : AggregateObject
+public class FeaturedItem : AggregateObject
 { 
     [Required] 
     public string Name { get; set; }

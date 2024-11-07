@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PriceAggregatorAPI.Models.Requests;
 
-public class FeatureRequest
+public class FeaturedItemRequest
 {
     public string Name { get; set; }
     

@@ -12,7 +12,7 @@ namespace PriceAggregator.Core.Entities
         public int ParentId { get; set; }
         public int? FeatureId { get; set; }
         [ForeignKey("FeatureId")]
-        public Feature Feature { get; set; }
+        public FeaturedItem FeaturedItem { get; set; }
         
         //public bool IsActive { get; set; }
         //public int Sort { get; set; }

@@ -10,7 +10,7 @@ namespace PriceAggregator.Infrastructure.Repository
     {
         public async Task<IEnumerable<Product>> GetProducts(Expression<Func<Product, bool>> filter = null, bool isTracked = true)
         {
-            IQueryable<Product> query = DbContext.Product;
+            IQueryable<Product> query = DbContext.Products;
             
             query = query.Include(p => p.Category)
                 .Include(p => p.Store);
