@@ -26,7 +26,7 @@ namespace PriceAggregator.Infrastructure
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //SeedData(modelBuilder);
+            SeedData(modelBuilder);
         }
 
         private void SeedData(ModelBuilder modelBuilder)
