@@ -8,13 +8,12 @@ namespace PriceAggregator.Core.Entities
         [Required]
         [MaxLength(150)]
         public string Name { get; set; }
-        public int TreeLevel { get; set; }
-        public int ParentId { get; set; }
-        public int? FeatureId { get; set; }
+        public long TreeLevel { get; set; }
+        public long ParentId { get; set; }
+        public long? FeatureId { get; set; }
         [ForeignKey("FeatureId")]
         public FeaturedItem FeaturedItem { get; set; }
-        
-        //public bool IsActive { get; set; }
-        //public int Sort { get; set; }
+        public bool IsActive { get; set; }
+        public int Sort { get; set; }
     }
 }

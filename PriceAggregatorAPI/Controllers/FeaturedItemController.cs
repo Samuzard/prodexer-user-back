@@ -39,8 +39,8 @@ public class FeaturedItemController(
         });
     }
 
-    [HttpGet("{featuredItemId:int}")]
-    public async Task<ActionResult<ApiResponse>> GetFeaturedItem(int featuredItemId)
+    [HttpGet("{featuredItemId:long}")]
+    public async Task<ActionResult<ApiResponse>> GetFeaturedItem(long featuredItemId)
     {
         var featuredItem = await featuredItemRepository.GetFeaturedItems(f => f.Id == featuredItemId);
 
@@ -98,8 +98,8 @@ public class FeaturedItemController(
         });
     }
 
-    [HttpPut("{featuredItemId:int}")]
-    public async Task<ActionResult<ApiResponse>> UpdateFeaturedItem(int featuredItemId, [FromBody] FeaturedItemRequest request)
+    [HttpPut("{featuredItemId:long}")]
+    public async Task<ActionResult<ApiResponse>> UpdateFeaturedItem(long featuredItemId, [FromBody] FeaturedItemRequest request)
     {
         var isValid = FeaturedItemHelper.ValidateRequest(ModelState, out var errorMessages,
             (productIds) => productIds?.Length > 0, request?.ProductIds);
@@ -134,8 +134,8 @@ public class FeaturedItemController(
         });
     }
 
-    [HttpDelete("{featuredItemId:int}")]
-    public async Task<ActionResult<ApiResponse>> DeleteFeaturedItem(int featuredItemId)
+    [HttpDelete("{featuredItemId:long}")]
+    public async Task<ActionResult<ApiResponse>> DeleteFeaturedItem(long featuredItemId)
     {
         var isDeleted = await featuredItemRepository.DeleteFeaturedItem(featuredItemId);
         if (!isDeleted)

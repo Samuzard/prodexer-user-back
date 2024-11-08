@@ -5,11 +5,17 @@ using PriceAggregator.Core.IRepository;
 
 namespace PriceAggregator.Infrastructure.Repository;
 
-public class CategoryRepository(ApplicationDbContext  dbContext) : Repository<Category>(dbContext), ICategoryRepository
+public class CategoryRepository : Repository<Category>, ICategoryRepository
 {
+    private readonly ApplicationDbContext _dbContext;
+
+    public CategoryRepository(ApplicationDbContext dbContext) : base(dbContext)
+    {
+        _dbContext = dbContext;
+    }
     public async Task<IEnumerable<Category>> GetCategories(Expression<Func<Category, bool>> filter = null, bool isTracked = true)
     {
-        var query = dbContext.Categories.AsQueryable();
+        var query = _dbContext.Categories.AsQueryable();
         
         if(filter != null)
             query = query.Where(filter);

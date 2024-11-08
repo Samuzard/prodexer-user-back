@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PriceAggregator.Infrastructure;
@@ -11,9 +12,11 @@ using PriceAggregator.Infrastructure;
 namespace PriceAggregator.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241108001445_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -57,7 +60,7 @@ namespace PriceAggregator.Infrastructure.Migrations
 
                     b.HasIndex("FeatureId");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("PriceAggregator.Core.Entities.FeaturedItem", b =>
@@ -80,7 +83,7 @@ namespace PriceAggregator.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FeaturedItems", (string)null);
+                    b.ToTable("FeaturedItems");
                 });
 
             modelBuilder.Entity("PriceAggregator.Core.Entities.Product", b =>
@@ -142,7 +145,7 @@ namespace PriceAggregator.Infrastructure.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("PriceAggregator.Core.Entities.Store", b =>
@@ -174,7 +177,7 @@ namespace PriceAggregator.Infrastructure.Migrations
 
                     b.HasIndex("FeatureId");
 
-                    b.ToTable("Stores", (string)null);
+                    b.ToTable("Stores");
                 });
 
             modelBuilder.Entity("PriceAggregator.Core.Entities.Category", b =>

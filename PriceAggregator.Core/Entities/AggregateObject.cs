@@ -6,7 +6,7 @@ namespace PriceAggregator.Core.Entities
     public class AggregateObject
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public long Id { get; set; }
         // public DateTime? CreationDate { get; set; }
         // public DateTime? UpdateDate { get; set; }
         public string CreatedBy { get; set; }

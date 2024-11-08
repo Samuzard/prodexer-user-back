@@ -9,7 +9,7 @@ namespace PriceAggregator.Core.Entities
         [MaxLength(100)]
         public string Name { get; set; }
         public string IconPath { get; set; }
-        public int? FeatureId { get; set; }
+        public long? FeatureId { get; set; }
         [ForeignKey("FeatureId")]
         public FeaturedItem FeaturedItem { get; set; }
     }

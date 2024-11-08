@@ -52,11 +52,11 @@ namespace PriceAggregatorAPI.Controllers
             }
         }
 
-        [HttpGet("{id:int}", Name = "GetProduct")]
+        [HttpGet("{id:long}", Name = "GetProduct")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<ApiResponse>> GetProduct(int id)
+        public async Task<ActionResult<ApiResponse>> GetProduct(long id)
         {
             try
             {

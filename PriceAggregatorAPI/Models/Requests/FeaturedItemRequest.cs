@@ -7,5 +7,5 @@ public class FeaturedItemRequest
     public string Name { get; set; }
     
     [MinLength(1)]
-    public int[] ProductIds { get; set; }
+    public long[] ProductIds { get; set; }
 }

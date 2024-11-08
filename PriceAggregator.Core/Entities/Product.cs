@@ -19,14 +19,14 @@ namespace PriceAggregator.Core.Entities
         public decimal? Rating { get; set; }
         public string StoreIconPath { get; set; }
         [ForeignKey(nameof(Category))]
-        public int CategoryId { get; set; }
+        public long CategoryId { get; set; }
         public Category Category { get; set; }
         
         [ForeignKey(nameof(Store))]
-        public int StoreId { get;set; }
+        public long StoreId { get;set; }
         public Store Store { get; set; }
         
-        public int? FeatureId { get; set; }
+        public long? FeatureId { get; set; }
         [ForeignKey("FeatureId")]
         public FeaturedItem FeaturedItem { get; set; }
     }

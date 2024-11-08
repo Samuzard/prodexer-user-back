@@ -27,7 +27,7 @@ public class FeaturedItemRepository(ApplicationDbContext dbContext) : Repository
         return await query.ToListAsync();
     }
 
-    public async Task<FeaturedItem> AddFeaturedProducts(int[] productIds, string name)
+    public async Task<FeaturedItem> AddFeaturedProducts(long[] productIds, string name)
     {
         var feature = new FeaturedItem();
 
@@ -45,7 +45,7 @@ public class FeaturedItemRepository(ApplicationDbContext dbContext) : Repository
         return feature;
     }
 
-    public async Task<bool> DeleteFeaturedItem(int featureId)
+    public async Task<bool> DeleteFeaturedItem(long featureId)
     {
         var feature = await GetAsync(f => f.Id == featureId);
         if (feature == null)
@@ -67,7 +67,7 @@ public class FeaturedItemRepository(ApplicationDbContext dbContext) : Repository
         return true;
     }
 
-    public async Task<FeaturedItem> UpdateFeaturedProduct(int featureId, string name, int[] productIds)
+    public async Task<FeaturedItem> UpdateFeaturedProduct(long featureId, string name, long[] productIds)
     {
         var feature = await DbContext.FeaturedItems
             .Include(f => f.Products)

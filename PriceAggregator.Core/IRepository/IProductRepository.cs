@@ -6,6 +6,6 @@ namespace PriceAggregator.Core.IRepository
     public interface IProductRepository : IRepository<Product>
     {
         Task<IEnumerable<Product>> GetProducts(Expression<Func<Product, bool>> filter = null, bool isTracked = true);
-        Task<IEnumerable<Product>> UpdateProductWithFeatureId(int featureId, int[] productIds);
+        Task<IEnumerable<Product>> UpdateProductWithFeatureId(long featureId, long[] productIds);
     }
 }
