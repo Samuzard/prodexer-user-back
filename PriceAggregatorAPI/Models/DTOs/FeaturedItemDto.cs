@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace PriceAggregatorAPI.Models.DTOs;
 
 public class FeaturedItemDto

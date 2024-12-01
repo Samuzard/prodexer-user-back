@@ -15,6 +15,8 @@ public static class CategorySeedHelper
                     Id = 1,
                     Name = "Shoes",
                     TreeLevel = 0,
+                    IconPath = "/images/category_icons/scissors.svg",
+                    IconAlt = "Scissors icon"
                 },
                 new Category
                 {
