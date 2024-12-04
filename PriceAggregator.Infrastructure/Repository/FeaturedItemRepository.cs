@@ -11,11 +11,14 @@ public class FeaturedItemRepository(ApplicationDbContext dbContext) : Repository
     {
         IQueryable<FeaturedItem> query = DbContext.FeaturedItems;
 
-        query = query.Include(p => p.Products.OrderBy(product => product.Price))
-            .ThenInclude(s => s.Store)
-            .Include(p => p.Products)
-            .ThenInclude(c => c.Category);
-
+        query = query
+            .Include(f => f.Products.OrderBy(product => product.Price))
+            .ThenInclude(p => p.Store)
+            .Include(f => f.Products)
+            .ThenInclude(p => p.Category)
+            .Include(f => f.Stores)
+            .Include(f => f.Categories);
+       
         if (filter != null)
         {
             query = query.Where(filter);
@@ -45,6 +48,24 @@ public class FeaturedItemRepository(ApplicationDbContext dbContext) : Repository
         return feature;
     }
 
+    public async Task<FeaturedItem> AddFeaturedCategories(long[] categoriesIds, string name)
+    {
+        var feature = new FeaturedItem();
+
+        var categories = await DbContext.Categories
+            .Where(p => categoriesIds.Contains(p.Id))
+            .ToListAsync();
+
+        feature.Name = name;
+        feature.Categories = categories;
+
+        await DbContext.FeaturedItems.AddAsync(feature);
+
+        await SaveAsync();
+
+        return feature;
+    }
+    
     public async Task<bool> DeleteFeaturedItem(long featureId)
     {
         var feature = await GetAsync(f => f.Id == featureId);

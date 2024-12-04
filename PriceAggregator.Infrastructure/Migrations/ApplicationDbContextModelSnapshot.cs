@@ -63,7 +63,7 @@ namespace PriceAggregator.Infrastructure.Migrations
 
                     b.HasIndex("FeatureId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -171,7 +171,7 @@ namespace PriceAggregator.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("FeaturedItems");
+                    b.ToTable("FeaturedItems", (string)null);
                 });
 
             modelBuilder.Entity("PriceAggregator.Core.Entities.Product", b =>
@@ -233,7 +233,7 @@ namespace PriceAggregator.Infrastructure.Migrations
 
                     b.HasIndex("StoreId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
 
                     b.HasData(
                         new
@@ -428,7 +428,7 @@ namespace PriceAggregator.Infrastructure.Migrations
 
                     b.HasIndex("FeatureId");
 
-                    b.ToTable("Stores");
+                    b.ToTable("Stores", (string)null);
 
                     b.HasData(
                         new

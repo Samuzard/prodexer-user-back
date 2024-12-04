@@ -29,7 +29,7 @@ public class FeaturedItemController(
             });
         }
 
-        var dto = mapper.Map<IEnumerable<FeaturedItemDto>>(featuredItems);
+        var dto = mapper.Map<FeaturedItemContainerDto>(featuredItems);
         
         return Ok(new ApiResponse
         {

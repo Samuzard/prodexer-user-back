@@ -7,5 +7,5 @@ public class CategoryDto
     public int TreeLevel { get; set; }
     public int ParentId { get; set; }
     public string IconPath { get; set; }
-    public string IconAlt {get; set; }
+    public string IconAlt { get; set; }
 }
